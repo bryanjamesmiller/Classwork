@@ -1,0 +1,105 @@
+h1{
+    font-size: 3em;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    margin:auto;
+    border:2px solid #315E31;
+    border-radius: 7px;
+    margin-bottom:.4em;
+}
+
+h2{
+    border:2px solid #1F9900;
+    border-radius: 7px;
+    margin:auto;
+    font-size: 1.5em;
+    font-family: 'Lato', sans-serif;
+    text-align: center;   
+
+    padding:1em;
+}
+
+img{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: .5em;
+}
+
+h3{
+    font-size: 1.3em;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin: auto;
+}
+
+#middle h3 {
+    border:2px solid black;
+    border-radius: 7px;   
+}
+
+.projects{
+    text-align: center;
+}
+
+p{
+    font-size: .9em;
+    font-family: 'Open Sans', sans-serif;
+    margin-top:.1em;
+}
+
+#upper{
+    margin-right: 17%;
+    margin-left: 17%;
+    width: auto;
+    border: 2px solid #1F9900;
+    border-radius: 5px;
+    padding: 15px;
+    background-image: -webkit-linear-gradient(#1F9900, #7094FF);
+    background-image: -moz-linear-gradient(#1F9900, #7094FF);
+    background-image: -o-linear-gradient(#1F9900, #7094FF);
+    background-image: linear-gradient(#1F9900, #7094FF);
+}
+
+#middle{
+    padding:1em;
+    padding-bottom:.2em;
+    border:2px solid #7094FF;
+    border-radius: 5px;
+    margin:1em;
+    margin-right: 30%;
+    margin-left: 30%;
+}
+
+#lower{
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+.questions{
+    background-image: -webkit-linear-gradient(#1F9900, #7094FF);
+    background-image: -moz-linear-gradient(#1F9900, #7094FF);
+    background-image: -o-linear-gradient(#1F9900, #7094FF);
+    background-image: linear-gradient(#1F9900, #7094FF);
+}
+
+.answers{
+
+}
+
+a:link{
+    color: green;
+    text-decoration: none;
+}
+
+a:visited{
+    color: blue;
+}
+
+a:hover{
+    color: orange; 
+    text-decoration: underline;
+}
+
+a:active{
+    color: black;   
+}

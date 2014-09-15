@@ -1,0 +1,103 @@
+h1{
+    color: blue;
+    font-family: "Garamond", sans-serif;
+    border:5px solid orange;
+    border-radius: 10px;
+    padding: .1em;
+    font-size:370%;
+    font-weight: bold;    
+}
+#main{
+    margin-left:160px;   
+    font-family:Arial, sans-serif;
+    border:solid black;
+    border-radius: 1em;
+    padding:1em;
+    padding-top:0em
+}
+
+#category{
+    font-family:Arial, sans-serif;
+    font-size:85%;
+    list-style-type:none;
+    float:left;
+    margin-left:0px;    
+    padding-left:0px;
+    width:150px;
+}
+
+#category ul{
+    padding:0px;
+    margin-left:10px;
+}
+
+#category ul li{
+    list-style-type:none;   
+    margin-top:15px;
+}
+footer{
+    font-style:italic;   
+}
+p{
+    font-family: Calibri, sans-serif;
+}
+caption {
+    color:orange;
+    border-radius:.7em;
+    background-color: blue;
+    margin:1em;
+}
+body {
+    margin-left: 2%;
+    margin-right: 3%;
+    font-family: Calibri, sans-serif;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th{
+    color:blue;
+    border-radius:.5em;
+    background-color: orange;
+    margin:3em;
+}
+table td {
+    border: thin solid blue;
+}
+caption { 
+    font-weight: bold; font-size: larger; padding: 0.25em;
+}
+footer{
+    padding:1em;   
+}
+a:link{
+    color:blue;
+    text-decoration:none;
+}
+
+a:visited{
+    color:#585858;
+}
+
+a:hover{
+    color:#2E5151; 
+    text-decoration:underline;
+}
+
+a:active{
+    color: black;   
+    background-color: #F3F4F4;
+}
+
+.bodylink:link, visited, hover, active{
+    text-decoration:underline;
+}
+
+#iamhere a,
+#iamhere a:link,
+#iamhere a:visited,
+#iamhere a:hover {
+    color: orange; 
+
+}

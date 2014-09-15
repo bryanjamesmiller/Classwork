@@ -1,0 +1,25 @@
+@charset "utf-8";
+/* CSS Document */
+
+#header {margin-top: 1em;}
+#header h1 { padding-left: 160px; padding-top: 20px; background-image: url(../images/flag.gif); background-repeat: no-repeat; background-position: left; height: 70px; background-color: #eeeeff;}
+
+#footer { font-size: smaller; background-color: #eeeeff;}
+#footer p { padding: 1em; }
+
+#navigation ul {list-style: none; padding: 0;}
+#navigation ul li a {display: block;text-decoration: none; padding-left: 1em; border: thin solid navy; font-weight: bold;}
+#navigation ul li a:link {display: block;}
+#navigation ul li a:visited {display: block;}
+#navigation ul li a:hover {display: block; border: thin solid white; background-color: navy; color: white;}
+#navigation ul li a:active {display: block;}
+
+#index #navigation #nav-1 a, #index #navigation #nav-1 a:link, #index #navigation #nav-1 a:visited, #index #navigation #nav-1 a:hover,
+#article_2 #navigation #nav-2 a, #article_2 #navigation #nav-2 a:link, #article_2 #navigation #nav-2 a:visited, #article_2 #navigation #nav-2 a:hover,
+#article_3 #navigation #nav-3 a, #article_3 #navigation #nav-3 a:link, #article_3 #navigation #nav-3 a:visited, #article_3 #navigation #nav-3 a:hover,
+#article_4 #navigation #nav-4 a, #article_4 #navigation #nav-4 a:link, #article_4 #navigation #nav-4 a:visited, #article_4 #navigation #nav-4 a:hover,
+#article_5 #navigation #nav-5 a, #article_5 #navigation #nav-5 a:link, #article_5 #navigation #nav-5 a:visited, #article_5 #navigation #nav-5 a:hover,
+#article_6 #navigation #nav-6 a, #article_6 #navigation #nav-6 a:link, #article_6 #navigation #nav-6 a:visited, #article_6 #navigation #nav-6 a:hover,
+#article_7 #navigation #nav-7 a, #article_7 #navigation #nav-7 a:link, #article_7 #navigation #nav-7 a:visited, #article_7 #navigation #nav-7 a:hover,
+#amendments #navigation #nav-8 a, #amendments #navigation #nav-8 a:link, #amendments #navigation #nav-8 a:visited, #amendments #navigation #nav-8 a:hover
+{color: #ff0000; background-color: #ffffff; border: thin solid navy;}

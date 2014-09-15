@@ -1,0 +1,32 @@
+/**
+ * CSCI E-22 HW#1 Q#2
+ * 
+ * @author Bryan Miller
+ * @date	09/12/2014
+ *
+ */
+public class StringRecursion {
+	public static void main(String []args){
+		
+		printLetters("I like to recurse!");
+		
+	}
+	
+	// You may find it helpful to employ the substring,
+	// charAt, and length methods of the String class as part of your solutions
+	
+	/**
+	 * This method will take the String passed in and separate out its
+	 * characters to separate them with a comma and a space.  I should
+	 * give credit to the example done in class in the method printVertical.
+	 * 
+	 * @param str This is a String
+	 */
+	public static void printLetters(String str){
+		if (str == null || str.equals("")) 
+			return;
+		System.out.print(str.charAt(0) + ", ");
+		printLetters(str.substring(1)); 
+	}
+	
+}

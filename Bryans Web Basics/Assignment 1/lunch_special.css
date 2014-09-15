@@ -1,0 +1,73 @@
+h1 {
+    color: #29527A;
+    font-family: "Garamond", sans-serif;
+    border:3px solid #47A375;
+    border-radius: 5px;
+    padding: .2em;
+    font-size:350%;
+    font-weight: bold;    
+}
+
+.store_info {
+    color: #29527A;
+    font-family: "Garamond", sans-serif;
+    border:3px solid #47A375;
+    border-radius: 5px;
+    padding: .5em;
+    font-size:150%;
+    font-weight: bold;    
+}
+
+#name{
+    font-family: cursive, sans-serif;
+}
+
+p {
+    color: #29527A;
+    background-color: #CC9980;
+    margin: 1em;
+    font-family: "Rockwell", sans-serif;
+    text-align: justify;
+    border:5px solid #29527A;
+    border-width: medium;
+    border-radius: 10px;
+    padding: .7em;
+}
+
+legend {
+    font-family: cursive, sans-serif;
+    background-color: #E6E6E6;
+    border:3px solid #29527A;
+    border-radius: 15px;
+    font-size:130%;
+    font-weight: bold;
+    padding: .3em;
+    margin: .5em;
+}
+
+fieldset {
+    background-color: #47A375;
+    border-radius: 15px 15px;
+    border:3px solid #29527A;
+    margin: .4em;
+}
+
+#drinkoptions{
+    font-family: "Comic Sans MS", sans-serif;
+}
+
+#buttons_format{
+    padding: .5em 1em .5em 1em;
+    border-color: black;
+    border-radius: 1em;
+    font-weight: 900;
+    color: #29527A;
+    font-family: "Garamond", sans-serif;
+    font-size: 175%;
+}
+
+
+
+
+
+

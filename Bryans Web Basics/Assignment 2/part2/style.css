@@ -1,0 +1,85 @@
+/* CSS File for you to author for Assignment 2 Part 2 */
+
+body{
+    background-color:#0772A1;   
+    border-radius:.2em;
+}
+
+#logo{
+    float:left;
+    border: .3em solid white;
+    border-width:thin;
+    border-radius:.2em;
+    margin-left:4em;
+    margin-top:.3em;
+}
+
+h1{
+    color:white;
+    background-color:#A65800;
+    text-align:center;
+    border-radius:.2em;
+}
+
+header{
+    border: .3em solid white;
+    border-width:thin;
+    background-color:#024A68;    
+    border-radius:.2em;
+    margin-left:2em;
+    margin-right:2em;
+    padding-bottom:1em;
+}
+
+#subheading{
+    text-align:center;
+    font-style:italic;
+    font-size:110%;
+    color:white;
+}
+
+h3{
+    border-radius:.2em;
+    background-color:#A65800;
+    color:white;
+    padding-left:2em;
+}
+
+p{
+    margin-left:1em;   
+}
+
+hr{
+    width:7em;
+}
+
+.date {
+    font-style:italic;   
+}
+
+.story {
+    border-radius:.2em;
+    background-color:white;
+    padding-bottom:.1em;
+    margin-left:2em;
+    margin-right:2em;
+}
+
+a:link{
+    color:blue;
+    text-decoration:none;
+}
+
+a:visited{
+    color: orange;
+}
+
+a:hover{
+    color:  green; 
+    text-decoration:underline;
+}
+
+a:active{
+    color: purple;   
+    background-color: yellow;
+}

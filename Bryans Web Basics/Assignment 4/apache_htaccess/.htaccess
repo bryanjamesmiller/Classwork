@@ -1,0 +1,16 @@
+ErrorDocument 404 "Not Found.  No page available."
+
+ExpiresActive On
+ExpiresByType text/css A86400
+ExpiresByType application/x-javascript A86400
+ExpiresByType image/gif A86400
+ExpiresByType image/jpeg A3600
+ExpiresByType image/png A3600
+ExpiresDefault A3600
+ 
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xhtml
+AddOutputFilterByType DEFLATE application/x-javascript
+
+Redirect 301 /~bmiller/myfavoritebook http://www.amazon.com/Harry-Potter-Prisoner-Azkaban-Rowling/dp/0439136369/ref=sr_1_1?s=books&ie=UTF8&qid=1397943297&sr=1-1&keywords=prisoner+of+azkaban

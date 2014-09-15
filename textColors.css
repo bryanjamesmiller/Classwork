@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* CSS Document */
+
+.warning {
+	color: #800000;
+	font-family: Constantia, "Lucida Bright", "DejaVu Serif", Georgia, serif;
+	display: block;	
+}
+
+p {
+	color: #4F4D49;
+	font-family: Constantia, "Lucida Bright", "DejaVu Serif", Georgia, serif;
+}
+
+h1{
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #464053;	
+}
+
+body{
+	background-color: #C1A98B;	
+}
+
+p1 {
+	display: block;
+		
+}
