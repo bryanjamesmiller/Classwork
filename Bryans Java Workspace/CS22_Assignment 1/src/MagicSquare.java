@@ -20,7 +20,7 @@ public class MagicSquare {
     // Also, add to the MagicSquare class any other fields and methods that 
     // are needed to maintain the state of a magic-square puzzle and to solve 
     // it using recursive backtracking.  Use proper encapsulation when adding 
-    // new members of the class.  Determine what state needs to be maintained
+    // new members of the class (use private variables).  Determine what state needs to be maintained
     // in order to check if you can assign a particular number to a particular
     // cell, given the current state of the puzzle.
     private int boardSize;  //The number of columns and rows the board has
