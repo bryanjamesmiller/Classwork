@@ -15,21 +15,7 @@ public class MagicSquare {
 
     // the order (i.e., the dimension) of the puzzle
     private int order;
-    
-    // What each row and column should add up to
-    private int sum; 
-    
-    // The minimum possible value that can be placed on the magic square
-    private final int minNum=1; 
-    // The maximum possible number that can be placed on the magic square
-    private int maxNumber; 
-    
-	private boolean[] doColumnsAddUpCorrectly;  //Tests to see if the columns add up correctly
-	private boolean[] doRowsAddUpCorrectly;  //Tests to see if the rows add up correctly
-	
-	// Keeps track of available numbers, true if index number (=real number-1) is available
-	private boolean[] isNumberAvailable;    
-    
+
     /**
      * Creates a MagicSquare object for a puzzle with the specified
      * dimension/order.
