@@ -84,10 +84,7 @@ public class MagicSquare {
 	 * placeQueen - place a queen (for Magic Square, instead of queen, it's a number) at the specified row and column
 	 */
 	public void placeQueen(int row, int col) {
-		int testNum = (minNum + (int)((maxNumber-minNum+1) * Math.random()));  //Instead of true, this should be a number between 1 and the maxNumber possible
-		//if testNum is anywhere in numberOnSquare already, then find a different number
-		
-		numberOnSquare[row][col] = testNum;
+		numberOnSquare[row][col] = (minNum + (int)((maxNumber-minNum+1) * Math.random()));  //Instead of true, this should be a number between 1 and the maxNumber possible
 		squareEmpty[row][col] = false;
 
 	}
@@ -122,17 +119,14 @@ public class MagicSquare {
 				return true;
 			return false;
 		}
-		
+		System.out.println("In isSafe() method");
 		//and if row==this.order test!
 		int colSum=0;
 		for(int i = 0; i < this.order; i++){
 			colSum+=numberOnSquare[i][col];
 		}
-		if(colSum==this.sum){
-			System.out.println("In isSafe() method");
+		if(colSum==this.sum)
 			return true;
-			
-		}
 		return false;
 	}
 

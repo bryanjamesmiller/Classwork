@@ -84,10 +84,7 @@ public class MagicSquare {
 	 * placeQueen - place a queen (for Magic Square, instead of queen, it's a number) at the specified row and column
 	 */
 	public void placeQueen(int row, int col) {
-		int testNum = (minNum + (int)((maxNumber-minNum+1) * Math.random()));  //Instead of true, this should be a number between 1 and the maxNumber possible
-		//if testNum is anywhere in numberOnSquare already, then find a different number
-		
-		numberOnSquare[row][col] = testNum;
+		numberOnSquare[row][col] = (minNum + (int)((maxNumber-minNum+1) * Math.random()));  //Instead of true, this should be a number between 1 and the maxNumber possible
 		squareEmpty[row][col] = false;
 
 	}
@@ -105,15 +102,13 @@ public class MagicSquare {
 	 * specified square, and false otherwise.
 	 */
 	public boolean isSafe(int row, int col) {
-
+System.out.println("In isSafe() method");
 		//It's safe if it's empty in this case
 		//in the queens problem, there is a unique number for each diagonal, and the contents of the array say whether or not there is a queen (true or false) in that diagonal!!!!  it's kind of like flattening out the diagonals into rows of their own to see if there is a queen already in it, true or false in this row (or diagonal)
-		if(col < this.order-1)
+		if(col < this.order)
 			return (squareEmpty[row][col]); 	//Here I think we have to do the addition test to see if it all adds up, and return true if it does, false otherwise.
 		//Just to clarify what's going on, else if(col== this.order) meaning we're at the end of a row, then:
-		
-
-		if(row < this.order-1){
+		if(row < this.order){
 			int rowSum=0;
 			for(int i = 0; i < this.order; i++){
 				rowSum+=numberOnSquare[row][i];
@@ -122,17 +117,14 @@ public class MagicSquare {
 				return true;
 			return false;
 		}
-		
+
 		//and if row==this.order test!
 		int colSum=0;
 		for(int i = 0; i < this.order; i++){
 			colSum+=numberOnSquare[i][col];
 		}
-		if(colSum==this.sum){
-			System.out.println("In isSafe() method");
+		if(colSum==this.sum)
 			return true;
-			
-		}
 		return false;
 	}
 
