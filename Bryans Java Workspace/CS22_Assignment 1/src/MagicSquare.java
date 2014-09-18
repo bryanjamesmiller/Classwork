@@ -30,8 +30,9 @@ public class MagicSquare {
         
     //Fields from the Queens class, but we don't have to worry about the diagonal fields:
     private boolean[] colEmpty;         // keeps track of empty columns
+    private boolean[] addsUpCorrectly;  // keeps track of if the row adds up correctly
     private int[][] queenOnSquare;  // occupied squares - should re-name it to numberOnSquare eventually
-    private int aNum=1; //This is just a number to try in the magic square that will increment from 1 to the maxNum 
+    private final int minNum=1; //This is the minimum possible value that can be placed on the magic square 
     
     /**
      * Creates a MagicSquare object for a puzzle with the specified
@@ -83,8 +84,11 @@ public class MagicSquare {
      * placeQueen - place a queen (for Magic Square, instead of queen, it's a number) at the specified row and column
      */
     public void placeQueen(int row, int col) {
-        queenOnSquare[row][col] = aNum;  //Instead of true, this should be a number between 1 and the maxNumber possible
+        queenOnSquare[row][col] = (minNum + (int)((maxNumber-minNum+1) * Math.random()));  //Instead of true, this should be a number between 1 and the maxNumber possible
         colEmpty[col] = false;
+        for(int i = 0; i < this.order; i++){
+        	queenOnSquare[row][i]
+        }
     }
     
     /*
@@ -100,7 +104,8 @@ public class MagicSquare {
      * specified square, and false otherwise.
      */
     public boolean isSafe(int row, int col) {
-        return (colEmpty[col]); 	//Here I think we have to do the addition test to see if it all adds up, and return true if it does, false otherwise.
+    	//in the queens problem, there is a unique number for each diagonal, and the contents of the array say whether or not there is a queen (true or false) in that diagonal!!!!
+        return (colEmpty[col] && addsUpCorrectly[ ]); 	//Here I think we have to do the addition test to see if it all adds up, and return true if it does, false otherwise.
     }
     
     // Make sure that you don't attempt to assign a given number in more than one location.
@@ -124,10 +129,11 @@ public class MagicSquare {
     	if(row == boardSize)
     		return true;
     	
-    	//Try each column in the current row.  If column doesn't work, make recursive call
+    	//Try each column in the current row.  
+        //If it's not a safe square, then the loop will continue to the next column.  If there are no safe squares in a column, then the loop will eventually end and the method will return (backtrack) to the previous recursive call. 	
     	for(int col = 0; col < boardSize; col++)
     	{
-    		if(isSafe(row, col))  //May want to re-name isSafe to isValid, but just to connect it to the Queens program
+    		if(isSafe(row, col))  //May want to re-name isSafe to isValid, but just to connect it to the Queens program.  
     		{
     			placeQueen(row, col);  //May want to re-name placeQueen to placeValue, but just to connect it to the Queens program
     			

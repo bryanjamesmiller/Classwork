@@ -65,7 +65,7 @@ public class Queens {
     }
     
     /*
-     * placeQueen - place a queen at the specified row and column
+     * placeQueen - place a queen at the specified row and column.  This is where the location ofthe queen is stored - and where I'll need to store my numbers
      */
     public void placeQueen(int row, int col) {
         queenOnSquare[row][col] = true;
@@ -94,7 +94,7 @@ public class Queens {
     
     /*
      * isSafe - returns true if it is safe to place a queen at the
-     * specified square, and false otherwise.
+     * specified square, and false otherwise.  I think this is where I'll need to test to see if a number has already been taken AND if the rows add up to the required number AND eventually if the columns add up too.  Also, it may not be empty during the backtracking part! 
      */
     public boolean isSafe(int row, int col) {
         return (colEmpty[col] && 
@@ -119,7 +119,7 @@ public class Queens {
             return;
         } 
         
-        // Try each column in the current row.
+        // Try each column in the current row.  If it's not a safe square, then the loop will continue to the next column.  If there are no safe squares in a column, then the loop will eventually end and the method will return (backtrack) to the previous recursive call.
         for (int col = 0; col < boardSize; col++) {
             if (isSafe(row, col)) {
                 placeQueen(row, col);
