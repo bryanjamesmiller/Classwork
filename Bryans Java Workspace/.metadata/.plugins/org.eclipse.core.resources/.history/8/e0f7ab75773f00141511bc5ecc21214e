@@ -70,8 +70,6 @@ public class MagicSquare {
     /**
 	 * 
 	 * findACorrectNumber - goes recursively row by row, and loops through columns in each row.
-	 * The program ends and returns true if we make it past the final row and "off the board."
-	 * Otherwise, the program keep searching for a right combination of numbers.
 	 * 
 	 * @return true if a solution is found, else false.
 	 */
@@ -85,17 +83,17 @@ public class MagicSquare {
 		//If it's not a safe square, then the loop will continue to the next column.  If there are no safe squares in a column, then the loop will eventually end and the method will return (backtrack) to the previous recursive call. 	
 		for(int col = 0; col < this.order; col++)
 		{
-			//Place a number in a column   //how did the magic queens program initializie this value so isValid returned true?
+			//Place a number in a column 
 			this.placeNumber(row, col);  
 
 			//If there are three numbers, check to see if they add up to sum and are unique numbers
 			if(this.isValid(row, col))    
 			{
-//The current row is ok (for now), so move on to the next row by making a recursive call, WHICH COULD END THE PROGRAM BY RETURNING TRUE WHEN ROW==boardSize, which means that we have gotten to a row that is off the board (past the final row)
+				//The above row is ok, so move on to the next row by making a recursive call, WHICH COULD END THE PROGRAM BY RETURNING TRUE WHEN ROW==boardSize, which means that we have gotten to a row that is off the board (past the final row), so all rows work and a solution was found!
 				findARowOfCorrectNumbers(row+1); 
 
-				//If we get here, we've backtracked because our potential solution didn't work
-				this.removeNumber(row, col); 
+				//If we get here, we've backtracked
+				this.removeNumber(row, col); //May want to re-name placeQueen to removeValue, but just to connect it to the Queens program
 			}
 		}
 		return false;

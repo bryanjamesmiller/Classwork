@@ -85,7 +85,7 @@ public class MagicSquare {
 		//If it's not a safe square, then the loop will continue to the next column.  If there are no safe squares in a column, then the loop will eventually end and the method will return (backtrack) to the previous recursive call. 	
 		for(int col = 0; col < this.order; col++)
 		{
-			//Place a number in a column   //how did the magic queens program initializie this value so isValid returned true?
+			//Place a number in a column 
 			this.placeNumber(row, col);  
 
 			//If there are three numbers, check to see if they add up to sum and are unique numbers
