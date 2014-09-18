@@ -37,9 +37,22 @@ public class MagicSquare {
     public MagicSquare(int order) {
         values = new int[order][order];
         this.order = order;
+        this.maxNumber=order*order;
+        this.sum =((this.order)*(this.order)*(this.order)+(this.order))/2;
+        System.out.println("The rows and columns should add up to: " + sum);
+        
+        isNumberAvailable=new boolean[order*order];
 
-        // Add code to this constructor as needed to initialize
-        // the fields that you add to the object.
+        // All numbers 1 to maxNumber (represented by index 0 to maxNumber-1) 
+        // are initially available.
+		for(int i=0; i<this.order*this.order; i++)
+			isNumberAvailable[i]=true;
+		
+		for (int row = 0; row < order; row++) 
+		{
+			for (int col = 0; col < order; col++) 
+				values[row][col] = 0;  
+		}
     }
 
     /**
@@ -51,10 +64,54 @@ public class MagicSquare {
         // Replace the line below with your implementation of this method.
         // REMEMBER: The recursive-backtracking code should NOT go here.
         // See the comments above.
-        return false;
+        return this.findACorrectNumber(0);
     }
-
+    
     /**
+	 * 
+	 * findACorrectNumber - goes recursively row by row, and loops through columns in each row.
+	 * 
+	 * @return true if a solution is found, else false.
+	 */
+	public boolean findACorrectNumber(int row)
+	{
+		//If we get here, it means that we have gotten to a row that is off the board (past the final row), so all rows work and a solution was found
+		if(row == this.order)
+			return true;
+
+		//Try each column in the current row.  
+		//If it's not a safe square, then the loop will continue to the next column.  If there are no safe squares in a column, then the loop will eventually end and the method will return (backtrack) to the previous recursive call. 	
+		for(int col = 0; col < this.order; col++)
+		{
+			if(this.isValid(row, col))  //May want to re-name isSafe to isValid, but just to connect it to the Queens program.  
+			{
+				this.placeNumber(row, col);  //May want to re-name placeQueen to placeValue, but just to connect it to the Queens program
+
+				//The above row is ok, so move on to the next row by making a recursive call, WHICH COULD END THE PROGRAM BY RETURNING TRUE WHEN ROW==boardSize, which means that we have gotten to a row that is off the board (past the final row), so all rows work and a solution was found!
+				findACorrectNumber(row+1); 
+
+				//If we get here, we've backtracked
+				this.removeNumber(row, col); //May want to re-name placeQueen to removeValue, but just to connect it to the Queens program
+			}
+		}
+		return false;
+	}   
+
+	public boolean isValid(int row, int col) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public void placeNumber(int row, int col) {
+				
+	}
+	
+	public void removeNumber(int row, int col) {
+		
+		
+	}
+
+	/**
      * Displays the current state of the puzzle.
      * You should not change this method.
      */

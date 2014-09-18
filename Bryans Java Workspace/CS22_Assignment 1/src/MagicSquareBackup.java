@@ -35,7 +35,7 @@ public class MagicSquare {
 	private boolean[] doRowsAddUpCorrectly;  //Tests to see if the rows add up correctly
 	private boolean[]  isNumberAvailable;    // keeps track of available numbers, true if index number (=real number-1) is available, false if taken
 	//private boolean[] addsUpCorrectly;  // keeps track of if the row adds up correctly.  Don't know if I need this one.
-	private int[][] numberOnSquare;  // An int that is the number on the 2-d [row][col] of the square - should rename it to numberOnSquare eventually.  Do need this one
+	
 	private final int minNum=1; //This is the minimum possible value that can be placed on the magic square 
 
 	/**
@@ -63,14 +63,11 @@ public class MagicSquare {
 			System.out.println("Num " + i + " is: " + isNumberAvailable[i]);
 		}
 		
-		numberOnSquare = new int[boardSize][boardSize];
+		
 		for (int row = 0; row < boardSize; row++) 
 		{
 			for (int col = 0; col < boardSize; col++) 
-			{
-				//squareEmpty[row][col] = true;  
-				numberOnSquare[row][col] = 0;  //Initialize all squares to zero in the magic square per the instructions
-			}
+				values[row][col] = 0;  //Initialize all squares to zero in the magic square per the instructions
 		}
 	}
 
@@ -84,9 +81,9 @@ public class MagicSquare {
 		// REMEMBER: The recursive-backtracking code should NOT go here.
 		// See the comments above.
 
-		this.recursiveBacktracker(0);  //Start at row 0 
 
-		return false;
+
+		return this.findACorrectNumber(0);  //Start at row 0 ;
 	}
 
 	// MAKE THE MATH IN THE BELOW METHODS ADJUSTED FOR OUR PURPOSES
@@ -96,9 +93,9 @@ public class MagicSquare {
 	 */
 	public void placeQueen(int row, int col) {
 		int testNum = (minNum + (int)((maxNumber-minNum+1) * Math.random()));  //Instead of true, this should be a number between 1 and the maxNumber possible
-		//if testNum is anywhere in numberOnSquare already, then find a different number
+		//if testNum is anywhere in values already, then find a different number
 		
-		numberOnSquare[row][col] = testNum;
+		values[row][col] = testNum;
 		//squareEmpty[row][col] = false;
 
 	}
@@ -107,7 +104,7 @@ public class MagicSquare {
 	 * removeQueen - remove the queen (for Magic Square, instead of queen, it's a number) at the specified row and column
 	 */
 	public void removeQueen(int row, int col) {
-		numberOnSquare[row][col] = 0;  ////Empty squares are to be zero in the magic square per the instructions
+		values[row][col] = 0;  ////Empty squares are to be zero in the magic square per the instructions
 		//squareEmpty[row][col] = true;
 	}
 
@@ -127,7 +124,7 @@ public class MagicSquare {
 		if(row < this.order-1){
 			int rowSum=0;
 			for(int i = 0; i < this.order; i++){
-				rowSum+=numberOnSquare[row][i];
+				rowSum+=values[row][i];
 			}
 			if(rowSum==this.sum)
 				return true;
@@ -137,7 +134,7 @@ public class MagicSquare {
 		//and if row==this.order test!
 		int colSum=0;
 		for(int i = 0; i < this.order; i++){
-			colSum+=numberOnSquare[i][col];
+			colSum+=values[i][col];
 		}
 		if(colSum==this.sum){
 			System.out.println("In isSafe() method");
@@ -158,11 +155,11 @@ public class MagicSquare {
 	// column constraints is violated.
 	/**
 	 * 
-	 * recursiveBacktracker
+	 * findACorrectNumber
 	 * 
 	 * @return true if a solution is found, else false.
 	 */
-	public boolean recursiveBacktracker(int row)
+	public boolean findACorrectNumber(int row)
 	{
 		//If we get here, it means that we have gotten to a row that is off the board (past the final row), so all rows work and a solution was found
 		if(row == boardSize)
@@ -177,7 +174,7 @@ public class MagicSquare {
 				placeQueen(row, col);  //May want to re-name placeQueen to placeValue, but just to connect it to the Queens program
 
 				//The above row is ok, so move on to the next row by making a recursive call, WHICH COULD END THE PROGRAM BY RETURNING TRUE WHEN ROW==boardSize, which means that we have gotten to a row that is off the board (past the final row), so all rows work and a solution was found!
-				recursiveBacktracker(row+1); 
+				findACorrectNumber(row+1); 
 
 				//If we get here, we've backtracked
 				removeQueen(row, col); //May want to re-name placeQueen to removeValue, but just to connect it to the Queens program
