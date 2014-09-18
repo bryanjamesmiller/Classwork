@@ -108,24 +108,16 @@ public class MagicSquare {
 		if(col < this.order)
 			return (squareEmpty[row][col]); 	//Here I think we have to do the addition test to see if it all adds up, and return true if it does, false otherwise.
 		//Just to clarify what's going on, else if(col== this.order) meaning we're at the end of a row, then:
-		if(row < this.order){
+		if(col < this.order){
 			int rowSum=0;
 			for(int i = 0; i < this.order; i++){
 				rowSum+=numberOnSquare[row][i];
 			}
 			if(rowSum==this.sum)
 				return true;
-			return false;
 		}
 
-		//and if row==this.order test!
-		int colSum=0;
-		for(int i = 0; i < this.order; i++){
-			colSum+=numberOnSquare[col][i];
-		}
-		if(colSum==this.sum)
-			return true;
-		return false;
+		//if row<this.order  and if row==this.order test!
 	}
 
 	// Make sure that you don't attempt to assign a given number in more than one location.
