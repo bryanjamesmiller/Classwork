@@ -78,24 +78,25 @@ public class MagicSquare {
 			values[row][col]=i;    		
 
 			//See if you're at the end of a row or at the end of a column to see if the numbers add up if(col = this.order-1 && !numbersAddUp()){
-			if(col==this.order-1)  //eventually do this same (or similar) thing for the rows.
-				if(!numbersAddUp(row))  
-					return;
-				//if numbers add up to sum, keep going.  Otherwise, return.	
+			if(col==this.order-1)//eventually do this same (or similar) thing for the rows. 
+			{
+				if(numbersAddUp(row))  //if numbers add up to sum, keep going.  Otherwise, the for loop should loop.  
+				{
+					if(col<this.order-1){
+						System.out.println("Made it to the if and i=" + i);
+						fillOneMagicSquare(row, col+1);
+						System.out.println("Returning from the 'if' recursive call");
+					}    		
+					fillOneMagicSquare(row+1, FIRST_COLUMN);
+					System.out.println("Returning from the 'else' recursive call");
+
+				}
+			}
 
 			//If they don't add up, "return" and continue the for loop to increase the last number... what i'm not sure about is how to return twice if things still aren't adding up after trying all the numbers in that digit... return again?
 			//If they add up, (see below) 
-
-			//Make the recursive call to place the next number
-
-			if(col<this.order-1){
-				System.out.println("Made it to the if and i=" + i);
-				fillOneMagicSquare(row, col+1);
-				System.out.println("Returning from the 'if' recursive call");
-			}    		
-			fillOneMagicSquare(row+1, FIRST_COLUMN);
-			System.out.println("Returning from the 'else' recursive call");
-
+			
+		//Make the recursive call to place the next number
 		}
 		//When the program reaches here, this is when you will backtrack.
 		//You don't have to return here, the program will automatically return since it's "void".  
@@ -104,7 +105,7 @@ public class MagicSquare {
 
 	public boolean numbersAddUp(int row){
 		int tempSum = 0;
-		
+
 		for(int i = 0; i < this.order; i++){
 			tempSum+=values[row][i];
 		}
