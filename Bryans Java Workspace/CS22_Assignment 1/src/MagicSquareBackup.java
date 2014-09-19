@@ -2,41 +2,40 @@
  * MagicSquare.java
  * 
  * Author:          Computer Science E-22 staff
- * Modified by:     Bryan Miller, bmiller100wpm@gmail.com
- * Date modified:   9/4/2014
+ * Modified by:     <your name>, <your e-mail address>
+ * Date modified:   <current date>
  */
 
 import java.util.*;
 
 public class MagicSquare {
-	// The values array gives the current contents of the cells of the 
-	// puzzle values[r][c] in the cell at row r, column c.  A value of 0
-	// indicates a blank cell.
+	private static final int FIRST_ROW = 0;
+	private static final int FIRST_COL = 0;
+	private static final int EMPTY_SQUARE = 0;
+
+	// the current contents of the cells of the puzzle values[r][c]
+	// gives the value in the cell at row r, column c
 	private int[][] values;
 
 	// the order (i.e., the dimension) of the puzzle
 	private int order;
 
-	// Also, add to the MagicSquare class any other fields and methods that 
-	// are needed to maintain the state of a magic-square puzzle and to solve 
-	// it using recursive backtracking.  Use proper encapsulation when adding 
-	// new members of the class (use private variables).  Determine what state needs 
-	// to be maintained
-	// in order to check if you can assign a particular number to a particular
-	// cell, given the current state of the puzzle.
-	private int boardSize;  //The number of columns and rows the board has
-	private int sum; //What the rows and columns should add up to
-	
-	private int maxNumber; //What the maximum possible number is for the order of the magic square
+	// What each row and column should add up to
+	private int sum; 
 
-	//Fields from the Queens class, but we don't have to worry about the diagonal fields:
-	//private boolean[][] squareEmpty;         // keeps track of empty squares.   I dont know if I need this one.
+	// The minimum possible value that can be placed on the magic square
+	private final int minNum=1; 
+	// The maximum possible number that can be placed on the magic square
+	private int maxNumber; 
+
+	//The first possible number to try in a magic square
+	int tryNum=1;
+
 	private boolean[] doColumnsAddUpCorrectly;  //Tests to see if the columns add up correctly
 	private boolean[] doRowsAddUpCorrectly;  //Tests to see if the rows add up correctly
-	private boolean[]  isNumberAvailable;    // keeps track of available numbers, true if index number (=real number-1) is available, false if taken
-	//private boolean[] addsUpCorrectly;  // keeps track of if the row adds up correctly.  Don't know if I need this one.
-	
-	private final int minNum=1; //This is the minimum possible value that can be placed on the magic square 
+
+	// Keeps track of available numbers, true if index number (=real number-1) is available
+	private boolean[] isNumberAvailable;    
 
 	/**
 	 * Creates a MagicSquare object for a puzzle with the specified
@@ -45,29 +44,21 @@ public class MagicSquare {
 	public MagicSquare(int order) {
 		values = new int[order][order];
 		this.order = order;
-		
-		this.boardSize=order; // I could just use the variable "order" instead, but just to help connect my program with the Queens program.
 		this.maxNumber=order*order;
-		//Find what the rows and columns should add up to
 		this.sum =((this.order)*(this.order)*(this.order)+(this.order))/2;
 		System.out.println("The rows and columns should add up to: " + sum);
 
-		// Add code to this constructor as needed to initialize
-		// the fields that you add to the object.
-
-		//The below is from the Queens file, it initializes various fields defined as class fields above
-		//squareEmpty = new boolean[boardSize][boardSize];
 		isNumberAvailable=new boolean[order*order];
-		for(int i=0; i<this.order*this.order; i++){
+
+		// All numbers 1 to maxNumber (represented by index 0 to maxNumber-1) 
+		// are initially available.
+		for(int i=0; i<this.order*this.order; i++)
 			isNumberAvailable[i]=true;
-			System.out.println("Num " + i + " is: " + isNumberAvailable[i]);
-		}
 		
-		
-		for (int row = 0; row < boardSize; row++) 
+		for (int row = 0; row < order; row++) 
 		{
-			for (int col = 0; col < boardSize; col++) 
-				values[row][col] = 0;  //Initialize all squares to zero in the magic square per the instructions
+			for (int col = 0; col < order; col++) 
+				values[row][col] = EMPTY_SQUARE;  
 		}
 	}
 
@@ -80,108 +71,82 @@ public class MagicSquare {
 		// Replace the line below with your implementation of this method.
 		// REMEMBER: The recursive-backtracking code should NOT go here.
 		// See the comments above.
+		this.makeAValidMagicSquaresRow(FIRST_ROW);
 
-
-
-		return this.findACorrectNumber(0);  //Start at row 0 ;
+		return true;
 	}
 
-	// MAKE THE MATH IN THE BELOW METHODS ADJUSTED FOR OUR PURPOSES
+	public boolean isValid(int row, int col) {
 
-	/*
-	 * placeQueen - place a queen (for Magic Square, instead of queen, it's a number) at the specified row and column
-	 */
-	public void placeQueen(int row, int col) {
-		int testNum = (minNum + (int)((maxNumber-minNum+1) * Math.random()));  //Instead of true, this should be a number between 1 and the maxNumber possible
-		//if testNum is anywhere in values already, then find a different number
-		
-		values[row][col] = testNum;
-		//squareEmpty[row][col] = false;
-
-	}
-
-	/*
-	 * removeQueen - remove the queen (for Magic Square, instead of queen, it's a number) at the specified row and column
-	 */
-	public void removeQueen(int row, int col) {
-		values[row][col] = 0;  ////Empty squares are to be zero in the magic square per the instructions
-		//squareEmpty[row][col] = true;
-	}
-
-	/*
-	 * isSafe - returns true if it is safe to place a queen (for Magic Square, instead of queen, it's a number) at the
-	 * specified square, and false otherwise.
-	 */
-	public boolean isSafe(int row, int col) {
-
-		//It's safe if it's empty in this case
-		//in the queens problem, there is a unique number for each diagonal, and the contents of the array say whether or not there is a queen (true or false) in that diagonal!!!!  it's kind of like flattening out the diagonals into rows of their own to see if there is a queen already in it, true or false in this row (or diagonal)
-		if(col < this.order-1)
-			//return (squareEmpty[row][col]); 	//Here I think we have to do the addition test to see if it all adds up, and return true if it does, false otherwise.
-		//Just to clarify what's going on, else if(col== this.order) meaning we're at the end of a row, then:
-		
-
-		if(row < this.order-1){
-			int rowSum=0;
-			for(int i = 0; i < this.order; i++){
-				rowSum+=values[row][i];
-			}
-			if(rowSum==this.sum)
-				return true;
-			return false;
+		int testSum=0;
+		for(int i=0; i<this.order; i++){
+			testSum+=values[row][i];
 		}
-		
-		//and if row==this.order test!
-		int colSum=0;
-		for(int i = 0; i < this.order; i++){
-			colSum+=values[i][col];
-		}
-		if(colSum==this.sum){
-			System.out.println("In isSafe() method");
+		if(testSum==this.sum)
 			return true;
-			
-		}
 		return false;
 	}
 
-	// Make sure that you don't attempt to assign a given number in more than one location.
-	// Use recursive backtracking, but it should do so in a way that allows the 
-	// program to be more efficient. One way to do this is to have the program consider
-	// the squares in the following order: first fill the first row, then fill the remainder 
-	// of the first column, then fill the remainder of the second row, then fill the 
-	// remainder of the second column, etc. You are welcome to use a different 
-	// approach, provided that it employs recursive backtracking. In particular, make 
-	// sure that your revised algorithm still backtracks as soon as one of the row or
-	// column constraints is violated.
-	/**
-	 * 
-	 * findACorrectNumber
-	 * 
-	 * @return true if a solution is found, else false.
-	 */
-	public boolean findACorrectNumber(int row)
-	{
+	public void makeAValidMagicSquaresRow(int row) {
 		//If we get here, it means that we have gotten to a row that is off the board (past the final row), so all rows work and a solution was found
-		if(row == boardSize)
-			return true;
+		if(row == order)
+			return;
 
-		//Try each column in the current row.  
-		//If it's not a safe square, then the loop will continue to the next column.  If there are no safe squares in a column, then the loop will eventually end and the method will return (backtrack) to the previous recursive call. 	
-		for(int col = 0; col < boardSize; col++)
+		
+		findValidRow(row);
+
+		makeAValidMagicSquaresRow(row+1); 
+
+		//removeRow(row); // removes the Row and resets the arrays that we had filled earlier in the placeRow method
+		 
+	}
+
+
+	public void findValidRow(int row){
+		int testSum=0;
+		boolean [] isNumberAvailableTemp = new boolean[this.order*this.order];
+		
+		while(testSum!=15)
 		{
-			if(isSafe(row, col))  //May want to re-name isSafe to isValid, but just to connect it to the Queens program.  
+			testSum=0;
+			for(int i=0; i<3*3; i++)
+				isNumberAvailableTemp[i]=true;
+
+			for (int i = 0; i < 3; i++) 
 			{
-				placeQueen(row, col);  //May want to re-name placeQueen to placeValue, but just to connect it to the Queens program
-
-				//The above row is ok, so move on to the next row by making a recursive call, WHICH COULD END THE PROGRAM BY RETURNING TRUE WHEN ROW==boardSize, which means that we have gotten to a row that is off the board (past the final row), so all rows work and a solution was found!
-				findACorrectNumber(row+1); 
-
-				//If we get here, we've backtracked
-				removeQueen(row, col); //May want to re-name placeQueen to removeValue, but just to connect it to the Queens program
+				for (int col = 0; col < 3; col++) 
+					values[i][col] = 0;  
 			}
-		}
 
-		return false;
+
+			for(int i=0; i<3; i++)
+			{
+				while(values[row][i]==0)
+				{
+					int testNum = 1 + (int)((9-1+1) * Math.random());
+					if(isNumberAvailableTemp[testNum-1]==true && isNumberAvailable[testNum-1]==true)
+					{
+						values[row][i]=testNum;
+						isNumberAvailableTemp[testNum-1]=false;
+						isNumberAvailable[testNum-1]=false;
+						testSum+=testNum;
+						System.out.println("See if there are any repeats in here: " + values[row][i]);
+					}
+				}				
+			}
+			System.out.println("This row adds up to " + testSum);
+		}			
+
+		System.out.println();
+	}
+
+	private void placeRow(int row, int col) {
+
+	}
+
+	public void removeRow(int row) {
+
+
 	}
 
 	/**
