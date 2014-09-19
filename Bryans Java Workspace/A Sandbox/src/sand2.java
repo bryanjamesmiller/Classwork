@@ -28,24 +28,22 @@ public class sand2 {
 	}
 
 	public static void makeAValidMagicSquaresRow(int row){
-		
-		int testSum=0;
 
-		int testNum = (1 + (int)((9-1+1) * Math.random()));
+		int testSum=0;
 
 		for(int i=0; i<3; i++)
 		{
-			do{
-				testNum = (1 + (int)((9-1+1) * Math.random()));
-				if(isNumberAvailableTemp[testNum-1] && isNumberAvailable[testNum-1] && testNum != 0){
-					System.out.println("TestNum is " + testNum);
+			while(values[row][i]==0)
+			{
+				int testNum = 1 + (int)((9-1+1) * Math.random());
+				if(isNumberAvailableTemp[testNum-1]==true)
+				{
 					values[row][i]=testNum;
 					isNumberAvailableTemp[testNum-1]=false;
 					testSum+=testNum;
 				}
-			} while(isNumberAvailableTemp[testNum-1]);
+			} 
 			System.out.println("When is this zero: " + values[row][i]);
 		}
-		System.out.println("This row adds up to " + testSum);
 	}
 }
