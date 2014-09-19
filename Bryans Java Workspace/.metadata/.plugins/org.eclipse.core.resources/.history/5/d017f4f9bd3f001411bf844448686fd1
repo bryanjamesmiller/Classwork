@@ -54,14 +54,16 @@ public class sandbag1 {
 					{
 						values[row][i]=testNum;
 						isNumberAvailableTemp[testNum-1]=false;
-						isNumberAvailable[testNum-1]=false;
 						testSum+=testNum;
-						System.out.println("See if there are any repeats in here: " + values[row][i]);
 					}
-				}				
+				}				System.out.println("When is this zero: " + values[row][i]);
 			}
 			System.out.println("This row adds up to " + testSum);
 		}			
+
+		for(int i=0; i<isNumberAvailableTemp.length; i++){
+			isNumberAvailable[i]=isNumberAvailableTemp[i];
+		}
 
 		System.out.println();
 	}

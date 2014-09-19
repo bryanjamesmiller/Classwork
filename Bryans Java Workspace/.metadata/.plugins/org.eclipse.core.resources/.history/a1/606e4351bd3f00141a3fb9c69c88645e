@@ -10,7 +10,7 @@ public class sandbag1 {
 
 		for(int i=0; i<3*3; i++)
 			isNumberAvailableTemp[i]=true;
-
+		
 		for(int i=0; i<3*3; i++)
 			isNumberAvailable[i]=true;
 
@@ -32,6 +32,9 @@ public class sandbag1 {
 	public static void makeAValidMagicSquaresRow(int row){
 		int testSum=0;
 
+		int testNum = (1 + (int)((9-1+1) * Math.random()));
+
+
 		while(testSum!=15)
 		{
 			testSum=0;
@@ -47,21 +50,24 @@ public class sandbag1 {
 
 			for(int i=0; i<3; i++)
 			{
-				while(values[row][i]==0)
-				{
-					int testNum = 1 + (int)((9-1+1) * Math.random());
-					if(isNumberAvailableTemp[testNum-1]==true && isNumberAvailable[testNum-1]==true)
-					{
+				System.out.println("The numbers in the first row are: " + values[row][i]);
+				do{
+					testNum = (1 + (int)((9-1+1) * Math.random()));
+					if(isNumberAvailableTemp[testNum-1] && isNumberAvailable[testNum-1] && testNum != 0){
+						System.out.println("TestNum is " + testNum);
 						values[row][i]=testNum;
 						isNumberAvailableTemp[testNum-1]=false;
-						isNumberAvailable[testNum-1]=false;
 						testSum+=testNum;
-						System.out.println("See if there are any repeats in here: " + values[row][i]);
 					}
-				}				
+				} while(isNumberAvailableTemp[testNum-1]);
+				System.out.println("When is this zero: " + values[row][i]);
 			}
 			System.out.println("This row adds up to " + testSum);
 		}			
+
+		for(int i=0; i<isNumberAvailableTemp.length; i++){
+			isNumberAvailable[i]=isNumberAvailableTemp[i];
+		}
 
 		System.out.println();
 	}
