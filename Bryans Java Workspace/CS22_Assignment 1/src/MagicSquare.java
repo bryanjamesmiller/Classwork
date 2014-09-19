@@ -116,6 +116,7 @@ public class MagicSquare {
 				else
 					testNum = (minNum + (int)((maxNumber-minNum+1) * Math.random()));
 			} while(!isNumberAvailable[testNum-1]);
+			System.out.println("The numbers in the first row are: " + values[row][i]);
 		}
 	}
 

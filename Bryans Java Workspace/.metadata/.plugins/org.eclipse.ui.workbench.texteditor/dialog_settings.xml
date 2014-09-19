@@ -3,36 +3,36 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="446" key="DIALOG_Y_ORIGIN"/>
-		<item value="381" key="DIALOG_HEIGHT"/>
 		<item value="88" key="DIALOG_X_ORIGIN"/>
+		<item value="381" key="DIALOG_HEIGHT"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="isRegEx"/>
 		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="" key="selection"/>
+		<item value="testNum" key="selection"/>
 		<list key="findhistory">
+			<item value="testNum"/>
+			<item value="random"/>
+			<item value="recursiveBacktracker"/>
+			<item value="numberOnSquare"/>
+			<item value="downDiagEmpty"/>
 			<item value="aNum"/>
 			<item value="order"/>
 			<item value="sum"/>
-			<item value="maxNumber"/>
-			<item value="colEmpty"/>
-			<item value="stepsTaken"/>
-			<item value="isValid"/>
-			<item value="findSafeColumn"/>
 		</list>
 		<list key="replacehistory">
+			<item value="findACorrectNumber"/>
+			<item value="values"/>
 			<item value="boardSize"/>
 			<item value="InnerClassesHelper"/>
 			<item value=".57"/>
 			<item value="testSetsWindow"/>
 			<item value="TestSetsGUI"/>
 			<item value="gameOver();return true;"/>
-			<item value="\n"/>
-			<item value="location_5_5"/>
 		</list>
 	</section>
 </section>
