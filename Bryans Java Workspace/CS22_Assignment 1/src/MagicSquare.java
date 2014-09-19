@@ -9,6 +9,10 @@
 import java.util.*;
 
 public class MagicSquare {
+	private static final int FIRST_ROW = 0;
+	private static final int FIRST_COL = 0;
+	private static final int EMPTY_SQUARE = 0;
+
 	// the current contents of the cells of the puzzle values[r][c]
 	// gives the value in the cell at row r, column c
 	private int[][] values;
@@ -24,11 +28,15 @@ public class MagicSquare {
 	// The maximum possible number that can be placed on the magic square
 	private int maxNumber; 
 
+	//The first possible number to try in a magic square
+	int tryNum=1;
+
 	private boolean[] doColumnsAddUpCorrectly;  //Tests to see if the columns add up correctly
 	private boolean[] doRowsAddUpCorrectly;  //Tests to see if the rows add up correctly
 
 	// Keeps track of available numbers, true if index number (=real number-1) is available
 	private boolean[] isNumberAvailable;    
+	private boolean[] isNumberAvailableTemp;    
 
 	/**
 	 * Creates a MagicSquare object for a puzzle with the specified
@@ -51,7 +59,7 @@ public class MagicSquare {
 		for (int row = 0; row < order; row++) 
 		{
 			for (int col = 0; col < order; col++) 
-				values[row][col] = 0;  
+				values[row][col] = EMPTY_SQUARE;  
 		}
 	}
 
@@ -64,63 +72,70 @@ public class MagicSquare {
 		// Replace the line below with your implementation of this method.
 		// REMEMBER: The recursive-backtracking code should NOT go here.
 		// See the comments above.
-		return this.tryAMagicSquare(0);
-	}
+		this.makeAValidMagicSquaresRow(FIRST_ROW);
 
-	/**
-	 * 
-	 * findACorrectNumber - goes recursively row by row, and loops through columns in each row.
-	 * The program ends and returns true if we make it past the final row and "off the board."
-	 * Otherwise, the program keep searching for a right combination of numbers.
-	 * 
-	 * @return true if a solution is found, else false.
-	 */
-	public boolean tryAMagicSquare(int row)
-	{
-		//If we get here, it means that we have gotten to a row that is off the board (past the final row), so all rows work
-		if(row == this.order)
-			return true;
-
-		//Test each row's sum in the current magic box.  
-		//If it dosn't add up right, make a recursive call to find a new magic box 	
-		for(int i = 0; i < this.order; i++)
-		{
-			//Place a number in a column  
-			this.makeAValidMagicSquaresRow(row);  
-
-			//If the magic square is valid, then work on the columns
-			if(this.isValid(row, i))    
-			{
-				//The current row is ok (for now), so move on to the next row by making a recursive call, WHICH COULD END THE PROGRAM BY RETURNING TRUE WHEN ROW==boardSize, which means that we have gotten to a row that is off the board (past the final row)
-				tryAMagicSquare(row+1); 
-
-				//If we get here, we've backtracked because our potential solution didn't work
-				this.removeNumber(row, i); 
-			}
-		}
-		return false;
-	}   
-
-	public boolean isValid(int row, int col) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
-	public void makeAValidMagicSquaresRow(int row) {
-		int testNum = (minNum + (int)((maxNumber-minNum+1) * Math.random()));
-		for(int i=0; i<this.order; i++)
-		{
-			do{
-				if(isNumberAvailable[testNum-1])
-					values[row][i]=testNum;
-				else
-					testNum = (minNum + (int)((maxNumber-minNum+1) * Math.random()));
-			} while(!isNumberAvailable[testNum-1]);
-			System.out.println("The numbers in the first row are: " + values[row][i]);
+	public boolean isValid(int row, int col) {
+
+		int testSum=0;
+		for(int i=0; i<this.order; i++){
+			testSum+=values[row][i];
 		}
+		if(testSum==this.sum)
+			return true;
+		return false;
 	}
 
-	public void removeNumber(int row, int col) {
+	public void makeAValidMagicSquaresRow(int row) {
+		//If we get here, it means that we have gotten to a row that is off the board (past the final row), so all rows work and a solution was found
+		if(row == order)
+			return;
+
+		findValidRow(row);
+
+		makeAValidMagicSquaresRow(row+1); 
+
+		removeRow(row); // removes the Row and resets the arrays that we had filled earlier in the placeRow method 
+	}
+
+
+	public void findValidRow(int row){
+		int testSum=0;
+
+		int testNum = (1 + (int)((9-1+1) * Math.random()));
+
+		while(testNum!=15)
+		{
+			for(int i = 0; i < this.order; i++)
+			{
+				do{
+					if(isNumberAvailable[testNum-1])
+					{
+						values[row][i]=testNum;
+						isNumberAvailable[testNum-1]=false;
+						testSum+=testNum;
+					}
+					else
+						testNum = (1 + (int)((9-1+1) * Math.random()));
+
+				} while(!isNumberAvailable[testNum-1]);
+				System.out.println("The numbers in the first row are: " + values[row][i]);
+			}
+		}
+		System.out.println("This row adds up to " + testSum);
+
+
+
+		System.out.println();
+	}
+
+	private void placeRow(int row, int col) {
+
+	}
+
+	public void removeRow(int row) {
 
 
 	}

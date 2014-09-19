@@ -10,7 +10,8 @@ public class RandomNumGenerator {
 		System.out.println(rint(4, 9));
 		System.out.println(rint(4, 9));
 		System.out.println(rint(4, 9));
-		System.out.println(rint(4, 9));
+		System.out.println((1 + (int)((9-1+1) * Math.random())));
+		
 	}
 
 	public static int rint (int a, int b)
