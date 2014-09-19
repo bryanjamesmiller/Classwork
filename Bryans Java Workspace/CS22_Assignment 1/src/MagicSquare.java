@@ -57,7 +57,9 @@ public class MagicSquare {
     }
     
     public void fillOneMagicSquare(int row, int col){
-    	if(row == this.order && col == this.order){
+    	System.out.println("Making a new recursive call.");
+    	if(row == this.order){
+    		System.exit(0);
     		this.isSolved=true;
     		System.out.println("Made it to the base case");
     		return;    		
@@ -66,16 +68,17 @@ public class MagicSquare {
     	for(int i=MIN_NUM; i<=this.maxNum; i++){
     		System.out.println("Row is " + row);
     		System.out.println("Col is " + col);
-    		System.out.println("i is " + col);
+    		System.out.println("i is " + i);
     		System.out.println();
     		values[row][col]=i;    		
     		
-    		if(col<this.order){
+    		if(col<this.order-1){
     			System.out.println("Made it to the if and i=" + i);
     			fillOneMagicSquare(row, col+1);
-    		}
-    		values[row][col]=i;	
+    			System.out.println("Returning from the 'if' recursive call");
+    		}    		
     		fillOneMagicSquare(row+1, FIRST_COLUMN);
+    		System.out.println("Returning from the 'else' recursive call");
     	}    	
     }
     
