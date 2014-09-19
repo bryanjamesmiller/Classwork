@@ -80,18 +80,26 @@ public class MagicSquare {
 			//See if you're at the end of a row or at the end of a column to see if the numbers add up if(col = this.order-1 && !numbersAddUp()){
 			if(col==this.order-1)//eventually do this same (or similar) thing for the rows. 
 			{
+				System.out.println("Going to test if numbers add up next");
 				if(numbersAddUp(row))  //if numbers add up to sum, keep going.  Otherwise, the for loop should loop.  
 				{
 					if(col<this.order-1){
 						System.out.println("Made it to the if and i=" + i);
 						fillOneMagicSquare(row, col+1);
-						System.out.println("Returning from the 'if' recursive call");
+						System.out.println("At a col 3, returning from the 'if' recursive call");
 					}    		
 					fillOneMagicSquare(row+1, FIRST_COLUMN);
-					System.out.println("Returning from the 'else' recursive call");
-
+					System.out.println("at a col 3, returning from the 'else' recursive call");
 				}
 			}
+
+			//If you're not at the end of a row, make a recursive call to fill the next square
+			if(col<this.order-1){
+				System.out.println("Made it to the if and i=" + i);
+				fillOneMagicSquare(row, col+1);
+				System.out.println("Not at a col 3, Returning from the 'if' recursive call");
+			}    		
+
 
 			//If they don't add up, "return" and continue the for loop to increase the last number... what i'm not sure about is how to return twice if things still aren't adding up after trying all the numbers in that digit... return again?
 			//If they add up, (see below) 
