@@ -74,7 +74,7 @@ public class MagicSquare {
 		// REMEMBER: The recursive-backtracking code should NOT go here.
 		// See the comments above.
 		fillOneMagicSquare(FIRST_ROW, FIRST_COLUMN);
-
+System.out.println("Is my program ever going to print?!?!?!?!");
 		return true;
 		//      return isSolved;
 	}
@@ -83,10 +83,11 @@ public class MagicSquare {
 		System.out.println();
 		System.out.println("Making a new recursive call.");
 		if(row == this.order){
-			System.exit(0);
 			this.isSolved=true;
 			System.out.println("Made it to the base case");
-			return;    		
+			display(); //I'm not supposed to print it out here, though.
+			System.exit(0);
+			return;
 		}
 
 		for(int i=MIN_NUM; i<=this.maxNum; i++)
