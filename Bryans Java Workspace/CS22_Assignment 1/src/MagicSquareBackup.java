@@ -19,6 +19,10 @@ public class MagicSquare {
 	// the current contents of the cells of the puzzle values[r][c]
 	// gives the value in the cell at row r, column c
 	private int[][] values;
+	
+	//This array keeps track of if a number is already used in a Magic Square
+	//The index number of the array is equal to the number that is available (true) or is not available (false)
+	private boolean[] isNumberAvailable;
 
 	// the order (i.e., the dimension) of the puzzle
 	private int order;
@@ -37,10 +41,26 @@ public class MagicSquare {
 	 * dimension/order.
 	 */
 	public MagicSquare(int order) {
-		values = new int[order][order];
 		this.order = order;
+		this.values = new int[order][order];
 		this.maxNum=this.order*this.order;
 		this.sum =((this.order)*(this.order)*(this.order)+(this.order))/2;
+		this.isNumberAvailable=new boolean[maxNum];
+		
+		for(int i=0; i<this.order; i++)
+		{
+			for(int j=0; j<order; j++)
+			{
+				this.values[i][j]=0;
+			}
+		}
+		
+		for(int i=0; i<this.order; i++)
+		{
+			this.isNumberAvailable[i]=true;
+		}
+		
+		
 		// Add code to this constructor as needed to initialize
 		// the fields that you add to the object.
 	}
@@ -61,6 +81,7 @@ public class MagicSquare {
 	}
 
 	public void fillOneMagicSquare(int row, int col){
+		System.out.println();
 		System.out.println("Making a new recursive call.");
 		if(row == this.order){
 			System.exit(0);
@@ -74,7 +95,7 @@ public class MagicSquare {
 			System.out.println("Row is " + row);
 			System.out.println("Col is " + col);
 			System.out.println("i is " + i);
-			System.out.println();
+			
 			values[row][col]=i;    		
 
 			//See if you're at the end of a row or at the end of a column to see if the numbers add up if(col = this.order-1 && !numbersAddUp()){
