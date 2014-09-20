@@ -102,12 +102,31 @@ public class MagicSquare {
 				values[row][col]=i;    	
 				isNumberAvailable[i]=false;
 
-				//See if you're at the end of a row or at the end of a column to see if the numbers add up if(col = this.order-1 && !numbersAddUp()){
-				if(col==this.order-1)//eventually do this same (or similar) thing for the rows. 
+				//See if you're at the end of a row to see if the numbers add up 
+				if(col==this.order-1) 
 				{
-					System.out.println("Going to test if numbers add up next");
-					if(numbersAddUp(row, col))  //if numbers add up to sum, keep going.  Otherwise, the for loop should loop.  
+					System.out.println("Going to test if the row numbers add up");
+					if(numbersAddUpInRow(row))  //if numbers add up to sum, keep going.  Otherwise, the for loop should loop.  
 					{
+						if(col<this.order-1){
+							System.out.println("Made it to the if and i=" + i);
+							fillOneMagicSquare(row, col+1);
+							System.out.println("At a col 3, returning from the 'if' recursive call");
+						}    		
+						fillOneMagicSquare(row+1, FIRST_COLUMN);
+						System.out.println("at a col 3, returning from the 'else' recursive call");
+					}
+				}
+
+				//See if you're at the end of a column to see if the numbers add up
+				if(row==this.order-1)
+				{
+					System.out.println("Going to test if the column numbers add up");
+					//if numbers add up to sum, fill the next magic square (by making a recurisve call).
+					//If the numbers don't add up, the for loop should loop.
+					if(numbersAddUpInColumn(col))
+					{
+						//I think the next few lines is where the issue is.
 						if(col<this.order-1){
 							System.out.println("Made it to the if and i=" + i);
 							fillOneMagicSquare(row, col+1);
@@ -138,34 +157,31 @@ public class MagicSquare {
 	}    	
 
 
-	public boolean numbersAddUp(int row, int col){
-		int tempSumOfRows = 0;
+	public boolean numbersAddUpInColumn(int col){
 		int tempSumOfColumns = 0;
-
-			for(int i = 0; i < this.order; i++){
-				tempSumOfRows+=values[row][i];
-				System.out.println("the numbers summed up in row: " + i + " are: " + values[row][i]);
-			}
-			System.out.println("tempSumOfRows is: " + tempSumOfRows);
-			if(tempSumOfRows==sum)
-			{
-				if(row<this.order-1)
-					return true;
-				else
-				{
-					for(int j = 0; j < this.order; j++)
-					{
-						tempSumOfColumns+=values[j][col];
-						System.out.println("the numbers summed up in col: " + j + " are: " + values[j][col]);
-					}
-					System.out.println("tempSumOfColumns is: " + tempSumOfColumns);
-					if(tempSumOfColumns==sum)
-						return true;  //The problem is I don't know if it will work with columns 2 and 3.  It should for column 1 though.
-				}
-			}
-			return false;
+		for(int i = 0; i < this.order; i++){
+			tempSumOfColumns+=values[i][col];
+			System.out.println("the numbers summed up in column: " + i + " are: " + values[i][col]);
 		}
-		
+		System.out.println("tempSumOfColumns is: " + tempSumOfColumns);
+		if(tempSumOfColumns==sum)
+			return true;
+		return false;
+	}
+
+	public boolean numbersAddUpInRow(int row){
+		int tempSumOfRows = 0;
+
+		for(int i = 0; i < this.order; i++){
+			tempSumOfRows+=values[row][i];
+			System.out.println("the numbers summed up in row: " + i + " are: " + values[row][i]);
+		}
+		System.out.println("tempSumOfRows is: " + tempSumOfRows);
+		if(tempSumOfRows==sum)
+			return true;
+		return false;
+	}
+
 	/**
 	 * Displays the current state of the puzzle.
 	 * You should not change this method.
