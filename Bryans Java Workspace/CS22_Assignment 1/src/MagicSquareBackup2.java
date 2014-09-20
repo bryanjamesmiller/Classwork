@@ -74,7 +74,7 @@ public class MagicSquare {
 		// REMEMBER: The recursive-backtracking code should NOT go here.
 		// See the comments above.
 		fillOneMagicSquare(FIRST_ROW, FIRST_COLUMN);
-
+		System.out.println("Is my program ever going to print?!?!?!?!");
 		return true;
 		//      return isSolved;
 	}
@@ -83,10 +83,11 @@ public class MagicSquare {
 		System.out.println();
 		System.out.println("Making a new recursive call.");
 		if(row == this.order){
-			System.exit(0);
 			this.isSolved=true;
 			System.out.println("Made it to the base case");
-			return;    		
+			display(); //I'm not supposed to print it out here, though.
+			System.exit(0);
+			return;
 		}
 
 		for(int i=MIN_NUM; i<=this.maxNum; i++)
@@ -105,7 +106,7 @@ public class MagicSquare {
 				if(col==this.order-1)//eventually do this same (or similar) thing for the rows. 
 				{
 					System.out.println("Going to test if numbers add up next");
-					if(numbersAddUp(row))  //if numbers add up to sum, keep going.  Otherwise, the for loop should loop.  
+					if(numbersAddUp(row, col))  //if numbers add up to sum, keep going.  Otherwise, the for loop should loop.  
 					{
 						if(col<this.order-1){
 							System.out.println("Made it to the if and i=" + i);
@@ -137,18 +138,34 @@ public class MagicSquare {
 	}    	
 
 
-	public boolean numbersAddUp(int row){
-		int tempSum = 0;
+	public boolean numbersAddUp(int row, int col){
+		int tempSumOfRows = 0;
+		int tempSumOfColumns = 0;
 
-		for(int i = 0; i < this.order; i++){
-			tempSum+=values[row][i];
-			System.out.println("the numbers summed up in col: " + i + "are: " + values[row][i]);
+			for(int i = 0; i < this.order; i++){
+				tempSumOfRows+=values[row][i];
+				System.out.println("the numbers summed up in row: " + i + " are: " + values[row][i]);
+			}
+			System.out.println("tempSumOfRows is: " + tempSumOfRows);
+			if(tempSumOfRows==sum)
+			{
+				if(row<this.order-1)
+					return true;
+				else
+				{
+					for(int j = 0; j < this.order; j++)
+					{
+						tempSumOfColumns+=values[j][col];
+						System.out.println("the numbers summed up in col: " + j + " are: " + values[j][col]);
+					}
+					System.out.println("tempSumOfColumns is: " + tempSumOfColumns);
+					if(tempSumOfColumns==sum)
+						return true;  //The problem is I don't know if it will work with columns 2 and 3.  It should for column 1 though.
+				}
+			}
+			return false;
 		}
-		System.out.println("tempSum is: " + tempSum);
-		if(tempSum==sum)
-			return true;
-		return false;
-	}
+		
 	/**
 	 * Displays the current state of the puzzle.
 	 * You should not change this method.
