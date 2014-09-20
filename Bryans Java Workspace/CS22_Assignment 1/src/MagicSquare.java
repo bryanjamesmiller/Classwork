@@ -60,7 +60,6 @@ public class MagicSquare {
 			this.isNumberAvailable[i]=true;
 		}
 
-
 		// Add code to this constructor as needed to initialize
 		// the fields that you add to the object.
 	}
@@ -99,7 +98,8 @@ public class MagicSquare {
 				System.out.println("Col is " + col);
 				System.out.println("i is " + i);
 
-				values[row][col]=i;    		
+				values[row][col]=i;    	
+				isNumberAvailable[i]=false;
 
 				//See if you're at the end of a row or at the end of a column to see if the numbers add up if(col = this.order-1 && !numbersAddUp()){
 				if(col==this.order-1)//eventually do this same (or similar) thing for the rows. 
@@ -128,6 +128,7 @@ public class MagicSquare {
 				//If they add up, (see below) 
 
 				//Make the recursive call to place the next number
+				isNumberAvailable[i]=true;
 			}
 		}
 
@@ -141,6 +142,7 @@ public class MagicSquare {
 
 		for(int i = 0; i < this.order; i++){
 			tempSum+=values[row][i];
+			System.out.println("the numbers summed up in col: " + i + "are: " + values[row][i]);
 		}
 		System.out.println("tempSum is: " + tempSum);
 		if(tempSum==sum)
