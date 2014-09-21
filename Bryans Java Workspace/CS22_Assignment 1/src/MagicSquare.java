@@ -73,21 +73,18 @@ public class MagicSquare {
 		// Replace the line below with your implementation of this method.
 		// REMEMBER: The recursive-backtracking code should NOT go here.
 		// See the comments above.
-		fillOneMagicSquare(FIRST_ROW, FIRST_COLUMN);
-		System.out.println("Is my program ever going to print?!?!?!?!");
-		return true;
-		//      return isSolved;
+		
+		if(this.order<3)
+			return false;
+		
+		
+		return fillOneMagicSquare(FIRST_ROW, FIRST_COLUMN);
 	}
 
-	public void fillOneMagicSquare(int row, int col){
-		System.out.println();
-		System.out.println("Making a new recursive call.");
+	public boolean fillOneMagicSquare(int row, int col)
+	{
 		if(row == this.order || col == this.order){
-			this.isSolved=true;
-			System.out.println("Made it to the base case");
-			display(); //I'm not supposed to print it out here, though.
-			System.exit(0);
-			return;
+			return true;
 		}
 
 		for(int i = MIN_NUM; i <= this.maxNum; i++)
@@ -96,7 +93,7 @@ public class MagicSquare {
 			{
 				//Place a number in the magic square 
 				values[row][col]=i;    	
-				
+
 				//Mark the number as not being available to use again.
 				isNumberAvailable[i]=false;
 
@@ -109,7 +106,8 @@ public class MagicSquare {
 						// If the row adds up to this.sum, 
 						// fill the first magic square in the next row  
 						// by making a new recursive call.					 		
-						fillOneMagicSquare(row + 1, FIRST_COLUMN);
+						if(fillOneMagicSquare(row + 1, FIRST_COLUMN))
+							return true;
 					}
 					// If the numbers didn't add up, the "for" loop should continue to try a new
 					// number in the same magic square.
@@ -119,7 +117,6 @@ public class MagicSquare {
 				// (this "if" block won't execute if you're not at the end of a column).
 				if(row==this.order-1)
 				{
-					System.out.println("Going to test if the column numbers add up");
 					//If numbers add up to sum, fill the next magic square (by making a recursive call).
 					//If the numbers don't add up, the "for" loop will loop to try a new number.  If all the numbers run out, you'll backtrack to a previous recursive stack frame.
 					if(numbersAddUpInColumn(col))
@@ -128,23 +125,27 @@ public class MagicSquare {
 						// in the same row and the next column.  
 						if(col<this.order-1)
 						{
-							fillOneMagicSquare(row, col + 1);	
+							if(fillOneMagicSquare(row, col + 1))
+								return true;
 						}
 					}
 				}
 
 				//If you're not at the end of a row, make a recursive call to fill the next square
-				if(col < this.order-1 && row < this.order-1){
-					fillOneMagicSquare(row, col + 1);
+				if(col < this.order-1 && row < this.order-1)
+				{
+					if(fillOneMagicSquare(row, col + 1))
+						return true;
 				}    		
 
 				// At this point, the current value in the for loop is being discarded for 
 				// the next value, so we have to make the current value "i" available again
-			    // for a different magic square to use.
+				// for a different magic square to use.
 				isNumberAvailable[i]=true;
 			}
-		}
 
+		}
+		return false;
 		//When the program reaches here, this is when you will backtrack.
 		//You don't have to return here, the program will automatically return since it's "void".  
 	}    	
