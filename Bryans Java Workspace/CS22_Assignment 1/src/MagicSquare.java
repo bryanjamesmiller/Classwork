@@ -33,9 +33,6 @@ public class MagicSquare {
 	//What each row and column should add up to
 	private int sum;
 
-	// Whether or not the puzzle is solved
-	private boolean isSolved=false;
-
 	/**
 	 * Creates a MagicSquare object for a puzzle with the specified
 	 * dimension/order.
@@ -73,10 +70,6 @@ public class MagicSquare {
 		// Replace the line below with your implementation of this method.
 		// REMEMBER: The recursive-backtracking code should NOT go here.
 		// See the comments above.
-		
-		if(this.order<3)
-			return false;
-		
 		
 		return fillOneMagicSquare(FIRST_ROW, FIRST_COLUMN);
 	}
