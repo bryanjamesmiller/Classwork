@@ -8,10 +8,15 @@
 
 import java.util.*;
 
-public class MagicSquare {
+public class MagicSquare_grad_credit {
 	//Starting row and column values
 	private static final int FIRST_COLUMN = 0;
 	private static final int FIRST_ROW = 0;
+
+	// This value allows for alternations between filling a magic square
+	// in a row or in a column, depending on if a whole row or column
+	// have been filled.
+	private static final boolean START_ON_ROW=true;
 
 	// The minimum possible number to try to put on the magic square
 	private static final int MIN_NUM = 1;
@@ -24,6 +29,9 @@ public class MagicSquare {
 	//The index number of the array is equal to the number that is available (true) or is not available (false)
 	private boolean[] isNumberAvailable;
 
+	//This helps determine what value for the column recursive call to use
+	private boolean colSwitcher=true;
+
 	// the order (i.e., the dimension) of the puzzle
 	private int order;
 
@@ -33,14 +41,11 @@ public class MagicSquare {
 	//What each row and column should add up to
 	private int sum;
 
-	// Whether or not the puzzle is solved
-	private boolean isSolved=false;
-
 	/**
 	 * Creates a MagicSquare object for a puzzle with the specified
 	 * dimension/order.
 	 */
-	public MagicSquare(int order) {
+	public MagicSquare_grad_credit(int order) {
 		this.order = order;
 		this.values = new int[order][order];
 		this.maxNum=this.order*this.order;
@@ -74,23 +79,16 @@ public class MagicSquare {
 		// REMEMBER: The recursive-backtracking code should NOT go here.
 		// See the comments above.
 
-		if(this.order<3)
-			return false;
-
-		fillOneMagicSquare(FIRST_ROW, FIRST_COLUMN, true);
-		return isSolved;
+		return fillOneMagicSquare(FIRST_ROW, FIRST_COLUMN, START_ON_ROW);
 	}
 
-	public void fillOneMagicSquare(int row, int col, boolean isRow)
+	public boolean fillOneMagicSquare(int row, int col, boolean isRow)
 	{
 		if(row == this.order || col == this.order)
 		{
-			this.isSolved=true;
-			System.out.println("Here's the solution:");
-			display(); 
-			System.exit(0);
-			return;
+			return true;
 		}
+
 
 		if(isRow)  //This "if" block works on the rows
 		{
@@ -111,10 +109,13 @@ public class MagicSquare {
 					{
 						if(numbersAddUpInRow(row))    
 						{  
+							//System.out.println("The rows should add up");
+							//display();
 							// If the row adds up to this.sum, 
 							// fill the first magic square in the next available column  
 							// by making a new recursive call.					 		
-							fillOneMagicSquare(row + 1, tempCol, false);
+							if(fillOneMagicSquare(row + 1, row, false))
+								return true;
 						}
 						// If the numbers didn't add up, the "for" loop should continue to try a new
 						// number in the same magic square.
@@ -124,10 +125,14 @@ public class MagicSquare {
 					// until that row is finished before moving down the next available column.
 					if(col < this.order-1 && row < this.order-1)
 					{
-						fillOneMagicSquare(row, col + 1, true);
+						
+						if(fillOneMagicSquare(row, col + 1, true))
+							return true;
 					}
+					isNumberAvailable[i]=true;
 				}
 			}
+
 		}
 		else  //This "else" block works on the columns
 		{
@@ -151,11 +156,33 @@ public class MagicSquare {
 						// If all the numbers run out, you'll backtrack to a previous recursive stack frame.
 						if(numbersAddUpInColumn(col))
 						{
+							//System.out.println("The columns should add up");
+							//display();
 							// If the column adds up correctly, make another recursive call to fill the next box
 							// in the next available row  
 							if(col < this.order - 1)
 							{
-								fillOneMagicSquare(tempRow, col + 1, true);	
+								if(colSwitcher==true)
+								{
+									if(fillOneMagicSquare(col, col + 1, true))
+									{
+										System.out.println("What is col: " + col);
+										colSwitcher=false;
+										display();
+										return true;
+									}
+								}
+								else
+								{
+									if(fillOneMagicSquare(col+1, col, true))
+									{
+										System.out.println("What is col2: " + col);
+										colSwitcher=true;
+										display();
+										return true;
+									}
+								}
+
 							}
 						}
 					}
@@ -163,95 +190,93 @@ public class MagicSquare {
 					//If you're not at the end of a column, make a recursive call to fill the next square in the same column
 					if(col < this.order-1 && row < this.order-1)
 					{
-						fillOneMagicSquare(row + 1, col, false);
+						if(fillOneMagicSquare(row + 1, col, false))
+							return true;
 					}					
+					isNumberAvailable[i]=true;
 				}
 			}
 		}
-
-
 
 		// At this point, the current value in the for loop is being discarded for 
 		// the next value, so we have to make the current value "i" available again
 		// for a different magic square to use.
-		isNumberAvailable[i]=true;
-	}
+		return false;
+	}	
 
-
-	//When the program reaches here, this is when you will backtrack.
-	//You don't have to return here, the program will automatically return since it's "void".  
-}    	
-
-
-public boolean numbersAddUpInColumn(int col){
-	int tempSumOfColumns = 0;
-	for(int i = 0; i < this.order; i++)
-	{
-		tempSumOfColumns += values[i][col];
-	}
-	if(tempSumOfColumns == sum)
-		return true;
-	return false;
-}
-
-public boolean numbersAddUpInRow(int row){
-	int tempSumOfRows = 0;
-
-	for(int i = 0; i < this.order; i++)
-	{
-		tempSumOfRows += values[row][i];
-	}
-	if(tempSumOfRows == sum)
-		return true;
-	return false;
-}
-
-/**
- * Displays the current state of the puzzle.
- * You should not change this method.
- */
-public void display() {
-	for (int r = 0; r < order; r++) {
-		printRowSeparator();
-		for (int c = 0; c < order; c++) {
-			System.out.print("|");
-			if (values[r][c] == 0)
-				System.out.print("   ");
-			else {
-				if (values[r][c] < 10) {
-					System.out.print(" ");
-				}
-				System.out.print(" " + values[r][c] + " ");
-			}
+	public boolean numbersAddUpInColumn(int col){
+		int tempSumOfColumns = 0;
+		for(int i = 0; i < this.order; i++)
+		{
+			tempSumOfColumns += values[i][col];
 		}
-		System.out.println("|");
+		//System.out.println("The column " + col + " adds up to " + tempSumOfColumns);
+		//display();
+		if(tempSumOfColumns == sum)
+			return true;
+		return false;
 	}
-	printRowSeparator();
-}
 
-// A private helper method used by display()
-// to print a line separating two rows of the puzzle.
-private void printRowSeparator() {
-	for (int i = 0; i < order; i++)
-		System.out.print("-----");
-	System.out.println("-");
-}
+	public boolean numbersAddUpInRow(int row){
+		int tempSumOfRows = 0;
 
-public static void main(String[] args) {
-	/*******************************************************
-	 **** You should NOT change any code in this method ****
-	 ******************************************************/
-
-	Scanner console = new Scanner(System.in);
-	System.out.print("What order Magic Square would you like to solve? ");
-	int order = console.nextInt();
-
-	MagicSquare puzzle = new MagicSquare(order);
-	if (puzzle.solve()) {
-		System.out.println("Here's the solution:");
-		puzzle.display();
-	} else {
-		System.out.println("No solution found.");
+		for(int i = 0; i < this.order; i++)
+		{
+			tempSumOfRows += values[row][i];
+		}
+		//System.out.println("The row " + row + " adds up to " + tempSumOfRows);
+		//display();
+		if(tempSumOfRows == sum)
+			return true;
+		return false;
 	}
-}
+
+	/**
+	 * Displays the current state of the puzzle.
+	 * You should not change this method.
+	 */
+	public void display() {
+		for (int r = 0; r < order; r++) {
+			printRowSeparator();
+			for (int c = 0; c < order; c++) {
+				System.out.print("|");
+				if (values[r][c] == 0)
+					System.out.print("   ");
+				else {
+					if (values[r][c] < 10) {
+						System.out.print(" ");
+					}
+					System.out.print(" " + values[r][c] + " ");
+				}
+			}
+			System.out.println("|");
+		}
+		printRowSeparator();
+	}
+
+	// A private helper method used by display()
+	// to print a line separating two rows of the puzzle.
+	private void printRowSeparator() {
+		for (int i = 0; i < order; i++)
+			System.out.print("-----");
+		System.out.println("-");
+	}
+
+	public static void main(String[] args) {
+		/*******************************************************
+		 **** You should NOT change any code in this method ****
+		 ******************************************************/
+
+		Scanner console = new Scanner(System.in);
+		System.out.print("What order Magic Square would you like to solve? ");
+		int order = console.nextInt();
+
+		MagicSquare_grad_credit puzzle = new MagicSquare_grad_credit(order);
+		if (puzzle.solve()) {
+			System.out.println("Here's the solution:");
+			puzzle.display();
+		} else {
+			System.out.println("No solution found.");
+		}
+	}
 }
