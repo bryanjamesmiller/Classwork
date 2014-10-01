@@ -13,6 +13,7 @@ C.  Shell sort after the initial phase of the algorithm, while the increment is 
 8, 3, 4, 10, 18, 12, 24, 33, 40
 
 D.  Bubble sort after the third pass:
+4, 10, 18, 8, 3, 12, 24, 33, 40
 
 E.  QuickSort in lecture's initial partitioning phase:
 
