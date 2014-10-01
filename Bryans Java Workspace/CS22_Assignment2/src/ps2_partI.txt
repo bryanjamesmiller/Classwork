@@ -4,10 +4,13 @@ Bryanjamesmiller@fas.harvard.edu
 1.  Given this array:  10 18 4 24 33 40 8 3 12
 
 A.  What will it be after Selection Sort after the second pass:
+3, 4, 18, 24, 33, 40, 8, 10, 12
 
 B.  Insertion Sort after the fourth iteration of the outer loop:
+4, 10, 18, 24, 33, 40, 8, 3, 12
 
-C.  Shell sort after the initial phase of the algorithm, if you assume that it uses an increment of 3? (The method presented in lecture would start with an increment of 7, but you should assume that it uses an increment of 3 instead.):
+C.  Shell sort after the initial phase of the algorithm, while the increment is 3:
+8, 3, 4, 10, 18, 12, 24, 33, 40
 
 D.  Bubble sort after the third pass:
 
