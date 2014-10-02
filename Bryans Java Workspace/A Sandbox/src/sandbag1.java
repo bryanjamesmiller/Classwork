@@ -1,68 +1,39 @@
 
-public class sandbag1 {
-	public static int[][] values = new int[3][3];
+public class sandbag1 
+{
+	static int counter=0;
+	static int counter2=0;
 
-	public static boolean[] isNumberAvailable = new boolean[9];    
-	public static boolean[] isNumberAvailableTemp = new boolean[9];    
+	public static void main (String [] args)
+	{
+		generateSums(5);
+		System.out.println("the number of times is: " + counter);
 
-	public static void main(String [] args) {
+		myGenerateSums(5);
+		System.out.println("the number of times is: " + counter2);
+	}
 
-
-		for(int i=0; i<3*3; i++)
-			isNumberAvailableTemp[i]=true;
-
-		for(int i=0; i<3*3; i++)
-			isNumberAvailable[i]=true;
-
-		for (int row = 0; row < 3; row++) 
-		{
-			for (int col = 0; col < 3; col++) 
-				values[row][col] = 0;  
+	public static void generateSums(int n) {
+		for (int i = 1; i <= n; i++) {
+			int sum = 0;
+			for (int j = 1; j <= i; j++) {
+				counter++;
+				sum = sum + j; // how many times is this executed?
+			}
+			System.out.println(sum);
 		}
-
-		int testSum=0;
-
-		//The below is like a recursive call with makeAValidMagicSquaresRow(row+1) each time
-		makeAValidMagicSquaresRow(0);
-		makeAValidMagicSquaresRow(1);
-		makeAValidMagicSquaresRow(2);
-
 	}
 
-	public static void makeAValidMagicSquaresRow(int row){
-		int testSum=0;
+	public static void myGenerateSums(int n) {
 
-		while(testSum!=15)
+		for(int i=1; i<n; i++)
 		{
-			testSum=0;
-			for(int i=0; i<3*3; i++)
-				isNumberAvailableTemp[i]=true;
+			System.out.println(i*(i+1)/2);
+		}
+		int sum=n*(n+1)/2;
+		counter2++;
 
-			for (int i = 0; i < 3; i++) 
-			{
-				for (int col = 0; col < 3; col++) 
-					values[i][col] = 0;  
-			}
-
-
-			for(int i=0; i<3; i++)
-			{
-				while(values[row][i]==0)
-				{
-					int testNum = 1 + (int)((9-1+1) * Math.random());
-					if(isNumberAvailableTemp[testNum-1]==true && isNumberAvailable[testNum-1]==true)
-					{
-						values[row][i]=testNum;
-						isNumberAvailableTemp[testNum-1]=false;
-						isNumberAvailable[testNum-1]=false;
-						testSum+=testNum;
-						System.out.println("See if there are any repeats in here: " + values[row][i]);
-					}
-				}				
-			}
-			System.out.println("This row adds up to " + testSum);
-		}			
-
-		System.out.println();
+		System.out.println(sum);
 	}
+
 }

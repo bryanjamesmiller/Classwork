@@ -1,0 +1,25 @@
+
+public class sandbag1 {
+
+	public static void main(String [] args)
+	{
+		int[] myArray = {1, 2, 3, 4, 5, 6, 7};
+		int[] myArray2 = {1, 1, 1, 1, 1};
+		System.out.println("array has no duplicates:");
+		System.out.println("number of duplicates: " + numDuplicatesA(myArray));
+		System.out.println("array is all duplicates:");
+		
+		numDuplicatesA(myArray2);
+		System.out.println("number of duplicates: " + numDuplicatesA(myArray2));
+	}
+	public static int numDuplicatesB(int[] arr) {
+		Sort.mergesort(arr);
+		int numDups = 0;
+		for (int i = 1; i < arr.length; i++) {
+		if (arr[i] == arr[i - 1]) {
+		numDups++;
+		}
+		}
+		return numDups;
+		}
+}

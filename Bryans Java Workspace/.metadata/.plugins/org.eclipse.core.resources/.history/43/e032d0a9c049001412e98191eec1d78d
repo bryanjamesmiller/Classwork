@@ -1,0 +1,63 @@
+
+public class QuickSort {
+
+	public static void main(String[] args)
+	{
+		int[] myArray = {10, 18, 4, 24, 33, 40, 8, 3, 12};
+		//SelectionSort just finds the lowest number in the array and swaps it with the first index,
+		//then it finds the second lowest number in the array and swaps it with the second index, etc.
+		quickSorter(myArray);
+		for(int i=0; i<myArray.length; i++)
+			System.out.print(myArray[i] + ", ");	
+	}
+
+	public static void quickSorter(int[] arr) {
+		qSort(arr, 0, arr.length - 1); 
+	}
+
+	//This is just a helper method
+	private static void qSort(int[] arr, int first, int last) {
+		int split = partition(arr, first, last);
+		if (first < split)
+			qSort(arr, first, split); // sort the left subarray recursively, breaking it into little subarrays until you just have 1 element, 
+		//then recombining them like a tree
+		
+		if (last > split + 1)
+			qSort(arr, split + 1, last); // Same thing as above for the right subarray
+	}
+
+	//This is just a helper method that makes a swap if the left index finds something less than the right index.  
+	//The two indexes start from both ends and move towards the middle, stopping once they are next to each other or on the same index
+	private static int partition(int[] arr, int first, int last) 
+	{
+		int pivot = arr[(first + last)/2];
+		int i = first - 1; // index going left to right
+		int j = last + 1; // index going right to left
+		while (true) {
+			do {
+				i++;
+			} while (arr[i] < pivot);
+			do {
+				j--;
+			} while (arr[j] > pivot); 
+			if (i < j)
+			{
+				swap(arr, i, j);
+				for(int k=0; k<arr.length; k++)
+					System.out.print("Swapping results in: " + arr[k] + ", ");	
+			}
+			else
+			{
+				System.out.print("Right before the return, and probably what I want, is: " + arr[k] + ", ");
+				return j; // arr[j] = end of left array
+			}
+		} 
+	}
+
+	private static void swap(int[] arr, int i, int j) {
+		int temp=arr[j];
+		arr[j]=arr[i];
+		arr[i]=temp;
+	}
+
+}

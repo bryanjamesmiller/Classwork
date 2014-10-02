@@ -1,0 +1,46 @@
+
+public class MergeSort {
+
+	public static void main(String[] args)
+	{
+		int[] myArray2 = {1, 2, 3, 4, 5};
+
+		//BubbleSorter compares two values next to each other and swaps them if the first one is higher
+		//than the second one.  Then it moves to the next value (and the second one of the previous two values) and
+		//does the same thing.  So the biggest number is going to get bubbled all the way to the right side of the array
+		//after every iteration, and other values may get swapped some as well.  
+		mergeSorter(myArray2);
+
+		System.out.println(numDuplicatesB(myArray2));
+		for(int i=0; i<myArray2.length; i++)
+			System.out.print(myArray2[i] + ", ");
+
+	}
+
+	public static void mergeSort(int[] arr) {
+		int[] temp = new int[arr.length];
+		mSort(arr, temp, 0, arr.length - 1);
+	}
+
+	public static void mSort(int[] arr, int[] temp,	int start, int end) 
+	{ 
+		if (start >= end) // base case
+			return;
+		int middle = (start + end)/2;
+		mergeSort(arr, tmp, start, middle);
+		mergeSort(arr, tmp, middle + 1, end);
+		merg
+	}
+
+	public static int numDuplicatesB(int[] arr) {
+		mergeSorter(arr);
+		int numDups = 0;
+		for (int i = 1; i < arr.length; i++) {
+			if (arr[i] == arr[i - 1]) {
+				numDups++;
+			}
+		}
+		return numDups;
+	}
+
+}
