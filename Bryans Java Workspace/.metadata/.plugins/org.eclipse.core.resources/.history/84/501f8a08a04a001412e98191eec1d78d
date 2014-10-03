@@ -63,7 +63,7 @@ public class PairSums
 		{
 			if(testArray[i] == k / 2)
 				System.out.println(testArray[i] + " + " + testArray[i] + " = " + k);
-			i++;
+
 		}
 	}
 
