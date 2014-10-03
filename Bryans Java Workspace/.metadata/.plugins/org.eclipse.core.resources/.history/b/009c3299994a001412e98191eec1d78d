@@ -15,7 +15,6 @@ public class PairSums
 		System.out.println();
 		int k = SUM_GOAL;
 		findPairs(testArray, k);
-		findPairsFaster(testArray, k);
 	}
 
 	/*
@@ -37,30 +36,4 @@ public class PairSums
 			}
 		}
 	}
-	
-	/*
-	 * This method is O(n log n) because mergeSort is O(n log n) and
-	 * we are only adding on to that O(n), which is less than O(n log n).  
-	 * Therefore the largest of the two terms remains, making this method 
-	 * O(n log n) efficient.
-	 */
-	public static void findPairsFaster(int[] testArray, int k) 
-	{
-		Sort.mergeSort(testArray);
-		int i;
-		for(i=0; testArray[i] < k/2; i++)
-		{
-			for(int j = testArray.length - 1; testArray[j] > k / 2; j--)
-			{
-				if(testArray[i] + testArray[testArray[j]] == k)
-					System.out.println(testArray[i] + " + " + testArray[j] + " = " + k);
-			}
-		}
-		
-		while(testArray[i] == k/2)
-		{
-			System.out.println(testArray[i] + " + " + testArray[i] + " = " + k);
-		}
-	}
-
 }

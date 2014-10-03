@@ -57,7 +57,7 @@ public class PairSums
 			}
 		}
 		
-		while(testArray[i] == k/2)
+		while(testArray[i]==k/2)
 		{
 			System.out.println(testArray[i] + " + " + testArray[i] + " = " + k);
 		}
