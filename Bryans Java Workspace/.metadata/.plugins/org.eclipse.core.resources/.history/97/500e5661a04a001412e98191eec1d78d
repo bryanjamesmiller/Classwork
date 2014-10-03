@@ -14,10 +14,9 @@ public class PairSums
 			System.out.print(testArray[i] + " ");
 		System.out.println();
 		int k = SUM_GOAL;
-		System.out.println("Here is the findPairs method: ");
 		findPairs(testArray, k);
 
-		System.out.println("Here is the faster findPairsFaster method: ");
+		System.out.println("Here is the faster version: ");
 		findPairsFaster(testArray, k);
 	}
 

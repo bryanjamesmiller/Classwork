@@ -14,10 +14,9 @@ public class PairSums
 			System.out.print(testArray[i] + " ");
 		System.out.println();
 		int k = SUM_GOAL;
-		System.out.println("Here is the findPairs method: ");
 		findPairs(testArray, k);
 
-		System.out.println("Here is the faster findPairsFaster method: ");
+		System.out.println("Here is the faster version: ");
 		findPairsFaster(testArray, k);
 	}
 
@@ -62,9 +61,8 @@ public class PairSums
 
 		while(testArray[i] == k / 2)
 		{
-			if(testArray[i]<testArray.length)
-				if(testArray[i+1] == k / 2)
-					System.out.println(testArray[i] + " + " + testArray[i] + " = " + k);
+			if(testArray[i] == k / 2)
+				System.out.println(testArray[i] + " + " + testArray[i] + " = " + k);
 			i++;
 		}
 	}
