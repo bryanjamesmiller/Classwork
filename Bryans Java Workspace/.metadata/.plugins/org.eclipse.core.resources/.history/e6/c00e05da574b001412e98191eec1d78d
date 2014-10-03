@@ -37,14 +37,22 @@ public class SortCount {
 
 	public static void shellBubbleSort(int [] arr)
 	{
+		//must use compare(arr[0], arr[1]; to compare arr[0] < arr[1]
+		//must use move(arr, i, j); instead of arr[i] = arr[j], which is the
+		//same as swap (see below) except that it just moves one value to the other index, 
+		//not BOTH to each other's index.  It is also more efficient.
+		//must use swap(arr, i, j); instead of some other way of swapping
+
 		int incr = 1;
 		while (2 * incr <= arr.length)
 			incr = 2 * incr;
 		incr = incr - 1;
 		
+		//the below is bubble sort in a while loop
+		
 		while (incr >= 1) 
 		{
-			for (int i = arr.length - 1; i > 0; i=i-incr) 
+			for (int i = arr.length - 1; i > 0; i--) 
 			{
 				for (int j = 0; j + incr <= i; j++) 
 				{
@@ -55,6 +63,21 @@ public class SortCount {
 					}
 				}
 			}
+
+			//the below is insertion sort also in the while loop.  i need apply the incr part
+			//below it the above, and then totally delete the below.
+			/*for (int i = incr; i < arr.length; i++) {
+				if (arr[i] < arr[i-incr]) {
+					int toInsert = arr[i];
+					int j = i;
+					do {
+						arr[j] = arr[j-incr];
+						j = j - incr;
+					} while (j > incr-1 && 
+							toInsert < arr[j-incr]);
+					arr[j] = toInsert;
+				}
+			}*/
 			incr = incr/2;
 		}
 	}    	
