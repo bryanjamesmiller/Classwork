@@ -52,7 +52,7 @@ public class PairSums
 		{
 			for(int j = testArray.length - 1; testArray[j] > k / 2; j--)
 			{
-				if(testArray[i] + testArray[j] == k)
+				if(testArray[i] + testArray[testArray[j]] == k)
 					System.out.println(testArray[i] + " + " + testArray[j] + " = " + k);
 			}
 		}

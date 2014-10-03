@@ -48,16 +48,16 @@ public class PairSums
 	{
 		Sort.mergeSort(testArray);
 		int i;
-		for(i=0; testArray[i] < k / 2; i++)
+		for(i=0; testArray[i] < k/2; i++)
 		{
 			for(int j = testArray.length - 1; testArray[j] > k / 2; j--)
 			{
-				if(testArray[i] + testArray[j] == k)
+				if(testArray[i] + testArray[testArray[j]] == k)
 					System.out.println(testArray[i] + " + " + testArray[j] + " = " + k);
 			}
 		}
 		
-		while(testArray[i] == k / 2)
+		while(testArray[i] == k/2)
 		{
 			System.out.println(testArray[i] + " + " + testArray[i] + " = " + k);
 		}
