@@ -3,20 +3,24 @@ public class SelectionSort {
 
 	public static void main(String[] args)
 	{
-		int[] myArray = {10, 18, 4, 24, 33, 40, 8, 3, 12};
+		int[] myArray = {5, 1, 1};
 		//SelectionSort just finds the lowest number in the array and swaps it with the first index,
 		//then it finds the second lowest number in the array and swaps it with the second index, etc.
 		selectionSort(myArray);
+		System.out.println();
 		for(int i=0; i<myArray.length; i++)
 			System.out.print(myArray[i] + ", ");	
 	}
 
 	public static void selectionSort(int[] arr) 
 	{
-		for (int i = 0; i < 1; i++) 
+		for (int i = 0; i < arr.length; i++) 
 		{
 			int j = indexSmallest(arr, i, arr.length-1);
 			swap(arr, i, j);
+			System.out.println();
+			for(int k=0; k<arr.length; k++)
+				System.out.print(arr[k] + ", ");
 		}
 	}
 

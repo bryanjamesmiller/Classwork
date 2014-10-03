@@ -1,0 +1,34 @@
+
+public class PairSums 
+{
+	static final int TEST_ARRAY_LENGTH = 5;
+	static final int TEST_ARRAY_MAX_VALUE = 10;
+	static final int SUM_GOAL = 12;
+
+	public static void main(String[] args)
+	{
+		int testArray[] = SortCount.randomArray(TEST_ARRAY_LENGTH, TEST_ARRAY_MAX_VALUE);
+		//int testArray[]={10, 4, 7, 7, 8, 5, 15};
+		int k = SUM_GOAL;
+		findPairs(testArray, k);
+	}
+
+	/*
+	 * This method is O(n^2) because
+	 */
+	public static void findPairs(int[] testArray, int k) 
+	{
+		for(int i = 0; i < testArray.length; i++)
+		{
+			for(int j = 0; j < testArray.length; j++)
+			{
+				if(i == j)
+					break;
+
+				if(testArray[i] + testArray[j] == k)
+					System.out.println(testArray[i] + " + " + testArray[j] + " = " + k);
+			}
+		}
+
+	}
+}
