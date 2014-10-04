@@ -50,7 +50,7 @@ public class SortCount {
 			//These arrays will keep track of if there are no swaps for a given j.  
 			//They initialize to false.
 			boolean nextIncr[]=new boolean[10];
-			boolean noSwaps[]=new boolean[10];
+			boolean didSwap[]=new boolean[10];
 
 
 			//After each inner loop, the outer loop knows the next largest available
@@ -83,9 +83,17 @@ public class SortCount {
 				// I need to keep track of the number of swaps, because if it is 0, you don't have to compare them again
 				for (int j = 0; j + incr <= i; j++) 
 				{
-					if(noSwaps[j]==false)
-					{					
-						noSwaps[j]=true;
+					if(didSwap[j]==false)
+					{
+						//If there was no swap made after a pass was completed, 
+						//move on to the next increment
+						if(j+incr==i && didSwap[0]==false)
+						{
+							System.out.println("DO I EVER GET IN HERE?");
+							nextIncr[0]=true;
+							break;
+						}
+						System.out.println("nextIncr is: " + nextIncr);
 						System.out.println("the increment is: " + incr);
 						System.out.println("i is: " + i);
 						System.out.println("j is: " + j);
@@ -94,9 +102,9 @@ public class SortCount {
 						if (compare(arr[j+incr] < arr[j]))
 						{	
 							swap(arr, j, j+incr);
-							noSwaps[j]=false;
+							didSwap[j]=true;
 						}
-						System.out.println("noSwaps is: " + noSwaps[j]);
+						System.out.println("didSwap is: " + didSwap);
 						printArray(arr);
 					}
 				}
