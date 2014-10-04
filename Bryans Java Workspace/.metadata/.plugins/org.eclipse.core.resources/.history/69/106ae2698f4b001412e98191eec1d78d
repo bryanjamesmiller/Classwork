@@ -88,6 +88,8 @@ public class SortCount {
 				if(nextIncr==true)
 				{
 					incr = incr/2;
+					System.out.println("in if Did I break?  I=" + i);
+					System.out.println("in if Did I break?  incr=" + incr);
 					break;
 				}
 	

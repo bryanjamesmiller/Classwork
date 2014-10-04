@@ -53,6 +53,8 @@ public class SortCount {
 			wasSwapped[0]=true;
 			boolean nextIncr=false;
 
+			System.out.println("in while Did I break?  incr=" + incr);
+
 			//After each inner loop, the outer loop knows the next largest available
 			//value has been placed on the first available index on the right end.
 			//That value, and those before it, no longer need to be compared to all
@@ -76,18 +78,20 @@ public class SortCount {
 			for (int i = arr.length - 1; i > 0; i=i-incr) 
 			{
 				//This for loop tests to see if no swaps were made for a given increment.
-				for(int k=0; k<i; k++)
+				for(int k=0; k<=i; k++)
 				{
 					//If there was at least one swap, then we just continue normally
 					if(wasSwapped[k]==true)
 						break;
-					if(k==i-1)
+					if(k==i)
 						nextIncr=true;					
 				}
 				//If no swaps were made for an entire pass of this increment, then we'll break to the next increment
 				if(nextIncr==true)
 				{
 					incr = incr/2;
+					System.out.println("in if Did I break?  I=" + i);
+					System.out.println("in if Did I break?  incr=" + incr);
 					break;
 				}
 	
@@ -100,7 +104,6 @@ public class SortCount {
 				// I need to keep track of the number of swaps, because if it is 0, you don't have to compare them again
 				for (int j = 0; j + incr <= i; j++) 
 				{
-					wasSwapped[j]=false;
 					if (compare(arr[j+incr] < arr[j]))
 					{	
 						swap(arr, j, j+incr);
