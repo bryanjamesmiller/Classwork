@@ -3,8 +3,8 @@
  *
  * Computer Science E-22, Harvard University
  *
- * Modified by:   <your name>, <your e-mail address>
- * Date modified: <current date>
+ * Modified by:   <Bryan Miller>, <bmiller100wpm@gmail.com>
+ * Date modified: <Oct. 4, 2014>
  */
 
 import java.util.*;
@@ -44,86 +44,41 @@ public class SortCount {
 
 		while (incr >= 1) 
 		{
-			//These arrays will keep track of if there were any swaps for a given pass
+			//This array will keep track of if there were any swaps for a given pass
 			//through the array  
 			boolean wasSwapped[]=new boolean[arr.length];
-			boolean shouldSkipThisJ[]=new boolean[arr.length];
 
 			//Initialize the wasSwapped array's first value to prevent a false test result below
 			wasSwapped[0]=true;
 			boolean nextIncr=false;
 
-			//After each inner loop, the outer loop knows the next largest available
-			//value has been placed on the first available index on the right end.
-			//That value, and those before it, no longer need to be compared to all
-			//the others in the array.  Therefore, each time the outer for loop runs,
-			//it has one less element that needs to be considered.  When dealing with
-			//increments, after the inner loop runs, the outer loop doesn't have to consider
-			//the "incr" number of elements on the right end.  Even those elements aren't 
-			//perfectly sorted yet, they will be when incr=1 and cleans up the small adjustments
-			//that still need to be made to the array that is almost sorted.  Therefore,
-			//Instead of i--; we have i=i-incr.  So if the array size is 5, i starts at 4 and incr at 3.
-			//The inner loop runs once and we know index 4, 3, 2 are the three largest numbers in the array,
-			//since they were compared with 0, 1, and 2 respectively, and swapped if needed.  Now incr is 1,
-			//and we go through the whole array except for the last value (i=i-1) and the biggest value
-			//gets swapped to the right each time, guaranteeing the final position for all values when
-			//the outer for loop finishes.  
-
-			//However, if no swaps get made during a certain incr=3, say for
-			// indexes 0, 3, and 6, (in a larger array) then the next time the inner loop runs we can skip
-			// that set of indexes.  
-
 			for (int i = arr.length - 1; i > 0; i=i-incr) 
 			{
-				/*
 				//This for loop tests to see if no swaps were made for a given increment.
 				for(int k=0; k<=i; k=k+incr)
 				{
 					//If there was at least one swap, then we just continue normally
 					if(wasSwapped[k]==true)
 						break;
-					//If there were no swaps for this increment, we can break to the next increment (see below)
 					if(k==i)
 						nextIncr=true;					
 				}
-				//If no swaps were made for an entire pass of this increment, then we'll break to the next increment
-				if(nextIncr==true)
-				{
-					incr = incr/2;
-					break;
-				}*/
 
-				//the inner for loop goes through the array once EXCEPT for the rightmost values that
-				// are "safe" by virtue of them having been bubbled to the right already.  With the "incr",
-				// this means the "incr" amount on the right side doesn't need to be tested after every
-				// inner for loop.  This is because it bubbles the # of increment values to the right side
-				// after every completion of the inner for loop.
-				// I need to keep track of the number of swaps, because if it is 0, you don't have to compare them again
-				for (int j = 0; j + incr <= i; j++) 
+				//If no swaps were made for an entire pass of this increment, then skip the 
+				//inner for loop and go to the next increment
+				if(nextIncr==false)
 				{
-					printArray(arr);
-					if(!shouldSkipThisJ[j])
+					for (int j = 0; j + incr <= i; j++) 
 					{
 						wasSwapped[j]=false;
 						if (compare(arr[j+incr] < arr[j]))
 						{	
-							printArray(arr);
 							swap(arr, j, j+incr);
 							wasSwapped[j]=true;
 						}
 					}
-					for (int l = j; l + incr <= i; l=l+incr)
-					{
-						if(wasSwapped[l]==true)
-							break;
-						//We can skip certain values of j if there are no swaps going on for those values
-						//for a given increment
-						if(l + incr ==i)
-							shouldSkipThisJ[j]=true;
-					}
 				}
 			}
-			//this division works because it casts to an int
 			incr = incr/2;
 		}
 	}    	
