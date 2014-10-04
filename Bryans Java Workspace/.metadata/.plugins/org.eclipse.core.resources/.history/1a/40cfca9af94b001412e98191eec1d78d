@@ -44,11 +44,12 @@ public class SortCount {
 
 		while (incr >= 1) 
 		{
-			//These arrays will keep track of if there were any swaps for a given pass
-			//through the array  
+			//These arrays will keep track of if there are no swaps for a given j.  
+			//They initialize to false.
 			boolean wasSwapped[]=new boolean[arr.length];
 
-			//Initialize the wasSwapped array;
+			//Setting wasSwapped[0]=true will assure we try the very first pass to 
+			//try to start sorting the array.  More is explained below.
 			wasSwapped[0]=true;
 			boolean nextIncr=false;
 
@@ -74,10 +75,8 @@ public class SortCount {
 
 			for (int i = arr.length - 1; i > 0; i=i-incr) 
 			{
-				
 				//This for loop tests to see if no swaps were made for a given increment.
-				//This part works for arrays of an even-lengthed size
-				for(int k=0; k<=i; k=k+incr)
+				for(int k=0; k<=i; k++)
 				{
 					//If there was at least one swap, then we just continue normally
 					if(wasSwapped[k]==true)
@@ -91,7 +90,8 @@ public class SortCount {
 					incr = incr/2;
 					break;
 				}
-				 
+	
+
 				//the inner for loop goes through the array once EXCEPT for the rightmost values that
 				// are "safe" by virtue of them having been bubbled to the right already.  With the "incr",
 				// this means the "incr" amount on the right side doesn't need to be tested after every
