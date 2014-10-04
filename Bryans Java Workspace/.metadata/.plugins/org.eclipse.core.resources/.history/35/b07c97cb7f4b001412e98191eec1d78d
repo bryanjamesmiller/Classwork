@@ -81,18 +81,18 @@ public class SortCount {
 					if(noSwaps[j]==false)
 					{					
 						noSwaps[j]=true;
-//						System.out.println("the increment is: " + incr);
-//						System.out.println("i is: " + i);
-//						System.out.println("j is: " + j);
-//						System.out.println("j + incr is: " + (j + incr));
-//						printArray(arr);
+						System.out.println("the increment is: " + incr);
+						System.out.println("i is: " + i);
+						System.out.println("j is: " + j);
+						System.out.println("j + incr is: " + (j + incr));
+						printArray(arr);
 						if (compare(arr[j+incr] < arr[j]))
 						{	
 							swap(arr, j, j+incr);
 							noSwaps[j]=false;
 						}
-//						System.out.println("noSwaps is: " + noSwaps[j]);
-//						printArray(arr);
+						System.out.println("noSwaps is: " + noSwaps[j]);
+						printArray(arr);
 					}
 				}
 			}

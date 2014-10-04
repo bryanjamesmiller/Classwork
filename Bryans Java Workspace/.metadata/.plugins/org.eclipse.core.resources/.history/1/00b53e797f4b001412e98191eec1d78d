@@ -46,7 +46,7 @@ public class SortCount {
 		{
 			//These arrays will keep track of if there are no swaps for a given j.  
 			//They initialize to false.
-			boolean noSwaps[]=new boolean[arr.length];
+			boolean noSwaps[]=new boolean[incr];
 
 			//After each inner loop, the outer loop knows the next largest available
 			//value has been placed on the first available index on the right end.
@@ -81,18 +81,18 @@ public class SortCount {
 					if(noSwaps[j]==false)
 					{					
 						noSwaps[j]=true;
-//						System.out.println("the increment is: " + incr);
-//						System.out.println("i is: " + i);
-//						System.out.println("j is: " + j);
-//						System.out.println("j + incr is: " + (j + incr));
-//						printArray(arr);
+						System.out.println("the increment is: " + incr);
+						System.out.println("i is: " + i);
+						System.out.println("j is: " + j);
+						System.out.println("j + incr is: " + (j + incr));
+						printArray(arr);
 						if (compare(arr[j+incr] < arr[j]))
 						{	
 							swap(arr, j, j+incr);
 							noSwaps[j]=false;
 						}
-//						System.out.println("noSwaps is: " + noSwaps[j]);
-//						printArray(arr);
+						System.out.println("noSwaps is: " + noSwaps[j]);
+						printArray(arr);
 					}
 				}
 			}
@@ -497,7 +497,7 @@ public class SortCount {
         System.out.print("shellBubbleSort\t\t");
         System.arraycopy(asave, 0, a, 0, asave.length);
         initStats();
-        shellBubbleSort(a);
+        bubbleSort(a);
         printStats();
         printArray(a);
 	}

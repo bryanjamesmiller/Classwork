@@ -42,11 +42,16 @@ public class SortCount {
 			incr = 2 * incr;
 		incr = incr - 1;
 
+		//For TESTING PURPOSES!!!
+		incr=3;
+
 		while (incr >= 1) 
 		{
 			//These arrays will keep track of if there are no swaps for a given j.  
 			//They initialize to false.
-			boolean noSwaps[]=new boolean[arr.length];
+			boolean nextIncr[]=new boolean[10];
+			boolean noSwaps[]=new boolean[10];
+
 
 			//After each inner loop, the outer loop knows the next largest available
 			//value has been placed on the first available index on the right end.
@@ -81,18 +86,18 @@ public class SortCount {
 					if(noSwaps[j]==false)
 					{					
 						noSwaps[j]=true;
-//						System.out.println("the increment is: " + incr);
-//						System.out.println("i is: " + i);
-//						System.out.println("j is: " + j);
-//						System.out.println("j + incr is: " + (j + incr));
-//						printArray(arr);
+						System.out.println("the increment is: " + incr);
+						System.out.println("i is: " + i);
+						System.out.println("j is: " + j);
+						System.out.println("j + incr is: " + (j + incr));
+						printArray(arr);
 						if (compare(arr[j+incr] < arr[j]))
 						{	
 							swap(arr, j, j+incr);
 							noSwaps[j]=false;
 						}
-//						System.out.println("noSwaps is: " + noSwaps[j]);
-//						printArray(arr);
+						System.out.println("noSwaps is: " + noSwaps[j]);
+						printArray(arr);
 					}
 				}
 			}
@@ -416,89 +421,100 @@ public class SortCount {
 		System.out.println("}");
 	}
 
-    public static void main(String args[]) {
-        int[] a;       // the array
-        int[] asave;   // a copy of the original unsorted array
-        int numItems;
-        String arrayType;
+	public static void main(String args[]) {
+		//int[] a;       // the array
+		int[] asave;   // a copy of the original unsorted array
+		int numItems;
+		String arrayType;
 
-        /*
-         * Get various parameters from the user.
-         */
-        Scanner in = new Scanner(System.in);
-        System.out.print("How many items in the array? ");
-        numItems = in.nextInt();
-        in.nextLine();
-        System.out.print("Random (r), almost sorted (a), or fully sorted (f)? ");
-        arrayType = in.nextLine();
-        System.out.println();
+		/*
+		 * Get various parameters from the user.
+		 */
+		Scanner in = new Scanner(System.in);
+		System.out.print("How many items in the array? ");
+		numItems = in.nextInt();
+		in.nextLine();
+		System.out.print("Random (r), almost sorted (a), or fully sorted (f)? ");
+		arrayType = in.nextLine();
 
-        /* 
-         * Create the arrays.   
-         */
-        if (arrayType.equalsIgnoreCase("A"))
-            a = almostSortedArray(numItems);
-        else {
-            a = randomArray(numItems);
-            if (arrayType.equalsIgnoreCase("F"))
-                quickSort(a);
-        }
+		/* 
+		 * Create the arrays.   
+		 */
+		/*
+		if (arrayType.equalsIgnoreCase("A"))
+			a = almostSortedArray(numItems);
+		else {
+			a = randomArray(numItems);
+			if (arrayType.equalsIgnoreCase("F"))
+				quickSort(a);
+		}*/
 
-        asave = new int[numItems];
-        System.arraycopy(a, 0, asave, 0, a.length);
-        printArray(a);
+		//for(int i=0; i<10; i++){
+		numItems=10;
+		int[] a={20, 7, 14, 18, 2, 30, 6, 23, 11, 5};
+		asave = new int[numItems];
+		System.arraycopy(a, 0, asave, 0, a.length);
+		printArray(a);
 
-        /*
-         * Try each of the various algorithms, starting each time 
-         * with a fresh copy of the initial array.
-         */
-        System.out.print("quickSort\t\t");
-        System.arraycopy(asave, 0, a, 0, asave.length);
-        initStats();
-        quickSort(a);
-        printStats();
-        printArray(a);
 
-        System.out.print("mergeSort\t\t");
-        System.arraycopy(asave, 0, a, 0, asave.length);
-        initStats();
-        mergeSort(a);
-        printStats();
-        printArray(a);
+		System.out.print("shellBubbleSort\t\t");
+		System.arraycopy(asave, 0, a, 0, asave.length);
+		initStats();
+		shellBubbleSort(a);
+		printStats();
+		printArray(a);
 
-        System.out.print("shellSort\t\t");
-        System.arraycopy(asave, 0, a, 0, asave.length);
-        initStats();
-        shellSort(a);
-        printStats();
-        printArray(a);
+		a = randomArray(numItems);
+		//	}
 
-        System.out.print("insertionSort\t\t");
-        System.arraycopy(asave, 0, a, 0, asave.length);
-        initStats();
-        insertionSort(a);
-        printStats();
-        printArray(a);
+		/*
+		 * Try each of the various algorithms, starting each time 
+		 * with a fresh copy of the initial array.
+		 * */
 
-        System.out.print("selectionSort\t\t");
-        System.arraycopy(asave, 0, a, 0, asave.length);
-        initStats();
-        selectionSort(a);
-        printStats();
-        printArray(a);
+		System.out.print("quickSort\t\t");
+		System.arraycopy(asave, 0, a, 0, asave.length);
+		initStats();
+		quickSort(a);
+		printStats();
+		printArray(a);
 
-        System.out.print("bubbleSort\t\t");
-        System.arraycopy(asave, 0, a, 0, asave.length);
-        initStats();
-        bubbleSort(a);
-        printStats();
-        printArray(a);
-        
-        System.out.print("shellBubbleSort\t\t");
-        System.arraycopy(asave, 0, a, 0, asave.length);
-        initStats();
-        shellBubbleSort(a);
-        printStats();
-        printArray(a);
+		System.out.print("mergeSort\t\t");
+		System.arraycopy(asave, 0, a, 0, asave.length);
+		initStats();
+		mergeSort(a);
+		printStats();
+		printArray(a);
+
+		System.out.print("shellSort\t\t");
+		System.arraycopy(asave, 0, a, 0, asave.length);
+		initStats();
+		shellSort(a);
+		printStats();
+		printArray(a);
+
+		System.out.print("insertionSort\t\t");
+		System.arraycopy(asave, 0, a, 0, asave.length);
+		initStats();
+		insertionSort(a);
+		printStats();
+		printArray(a);
+
+		System.out.print("selectionSort\t\t");
+		System.arraycopy(asave, 0, a, 0, asave.length);
+		initStats();
+		selectionSort(a);
+		printStats();
+		printArray(a);
+
+		System.out.print("bubbleSort\t\t");
+		System.arraycopy(asave, 0, a, 0, asave.length);
+		initStats();
+		bubbleSort(a);
+		printStats();
+		printArray(a);
+
+
+
 	}
 }
