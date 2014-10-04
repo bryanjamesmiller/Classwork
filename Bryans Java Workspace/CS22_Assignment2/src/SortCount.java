@@ -42,43 +42,72 @@ public class SortCount {
 			incr = 2 * incr;
 		incr = incr - 1;
 
-		
+		//For TESTING PURPOSES!!!
+		incr=3;
+
 		while (incr >= 1) 
 		{
-			boolean nextIncr=false;
-			boolean didSwap=false;
-			
-			//this array keeps track of the fact that 
-			//the last value no longer needs to be compared after each inner for loop pass per increment
+			//These arrays will keep track of if there are no swaps for a given j.  
+			//They initialize to false.
+			boolean nextIncr[]=new boolean[10];
+			boolean didSwap[]=new boolean[10];
+
+
+			//After each inner loop, the outer loop knows the next largest available
+			//value has been placed on the first available index on the right end.
+			//That value, and those before it, no longer need to be compared to all
+			//the others in the array.  Therefore, each time the outer for loop runs,
+			//it has one less element that needs to be considered.  When dealing with
+			//increments, after the inner loop runs, the outer loop doesn't have to consider
+			//the "incr" number of elements on the right end.  Even those elements aren't 
+			//perfectly sorted yet, they will be when incr=1 and cleans up the small adjustments
+			//that still need to be made to the array that is almost sorted.  Therefore,
+			//Instead of i--; we have i=i-incr.  So if the array size is 5, i starts at 4 and incr at 3.
+			//The inner loop runs once and we know index 4, 3, 2 are the three largest numbers in the array,
+			//since they were compared with 0, 1, and 2 respectively, and swapped if needed.  Now incr is 1,
+			//and we go through the whole array except for the last value (i=i-1) and the biggest value
+			//gets swapped to the right each time, guaranteeing the final position for all values when
+			//the outer for loop finishes.  
+
+			//However, if no swaps get made during a certain incr=3, say for
+			// indexes 0, 3, and 6, (in a larger array) then the next time the inner loop runs we can skip
+			// that set of indexes.  
+
 			for (int i = arr.length - 1; i > 0; i=i-incr) 
 			{
-				//the inner for loop goes through the array once and bubble the largest value to the right end
-				// When using an increment larger than 1, it bubbles the # of increment values to the right side
+				//the inner for loop goes through the array once EXCEPT for the rightmost values that
+				// are "safe" by virtue of them having been bubbled to the right already.  With the "incr",
+				// this means the "incr" amount on the right side doesn't need to be tested after every
+				// inner for loop.  This is because it bubbles the # of increment values to the right side
+				// after every completion of the inner for loop.
 				// I need to keep track of the number of swaps, because if it is 0, you don't have to compare them again
 				for (int j = 0; j + incr <= i; j++) 
 				{
-					//If there was no swap made after a pass was completed, 
-					//move on to the next increment
-					if(j+incr==i && didSwap==false)
+					if(didSwap[j]==false)
 					{
-						nextIncr=true;
-						break;
+						//If there was no swap made after a pass was completed, 
+						//move on to the next increment
+						if(j+incr==i && didSwap[0]==false)
+						{
+							System.out.println("DO I EVER GET IN HERE?");
+							nextIncr[0]=true;
+							break;
+						}
+						System.out.println("nextIncr is: " + nextIncr);
+						System.out.println("the increment is: " + incr);
+						System.out.println("i is: " + i);
+						System.out.println("j is: " + j);
+						System.out.println("j + incr is: " + (j + incr));
+						printArray(arr);
+						if (compare(arr[j+incr] < arr[j]))
+						{	
+							swap(arr, j, j+incr);
+							didSwap[j]=true;
+						}
+						System.out.println("didSwap is: " + didSwap);
+						printArray(arr);
 					}
-					
-					System.out.println("the increment is: " + incr);
-					System.out.println("i is: " + i);
-					System.out.println("j is: " + j);
-					System.out.println("j + incr is: " + (j + incr));
-					printArray(arr);
-					if (compare(arr[j+incr] < arr[j]))
-					{	
-						swap(arr, j, j+incr);
-						didSwap=true;
-					}
-					printArray(arr);
 				}
-				if(nextIncr==true)
-					break;
 			}
 			//this division works because it casts to an int
 			incr = incr/2;
@@ -401,7 +430,7 @@ public class SortCount {
 	}
 
 	public static void main(String args[]) {
-		int[] a;       // the array
+		//int[] a;       // the array
 		int[] asave;   // a copy of the original unsorted array
 		int numItems;
 		String arrayType;
@@ -419,36 +448,38 @@ public class SortCount {
 		/* 
 		 * Create the arrays.   
 		 */
+		/*
 		if (arrayType.equalsIgnoreCase("A"))
 			a = almostSortedArray(numItems);
 		else {
 			a = randomArray(numItems);
 			if (arrayType.equalsIgnoreCase("F"))
 				quickSort(a);
-		}
+		}*/
 
 		//for(int i=0; i<10; i++){
+		numItems=10;
+		int[] a={20, 7, 14, 18, 2, 30, 6, 23, 11, 5};
+		asave = new int[numItems];
+		System.arraycopy(a, 0, asave, 0, a.length);
+		printArray(a);
 
-			asave = new int[numItems];
-			System.arraycopy(a, 0, asave, 0, a.length);
-			printArray(a);
-			
 
-			System.out.print("shellBubbleSort\t\t");
-			System.arraycopy(asave, 0, a, 0, asave.length);
-			initStats();
-			shellBubbleSort(a);
-			printStats();
-			printArray(a);
-			
-			a = randomArray(numItems);
-	//	}
+		System.out.print("shellBubbleSort\t\t");
+		System.arraycopy(asave, 0, a, 0, asave.length);
+		initStats();
+		shellBubbleSort(a);
+		printStats();
+		printArray(a);
+
+		a = randomArray(numItems);
+		//	}
 
 		/*
 		 * Try each of the various algorithms, starting each time 
 		 * with a fresh copy of the initial array.
 		 * */
-		 
+
 		System.out.print("quickSort\t\t");
 		System.arraycopy(asave, 0, a, 0, asave.length);
 		initStats();
