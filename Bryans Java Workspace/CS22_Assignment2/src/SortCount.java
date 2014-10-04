@@ -47,8 +47,9 @@ public class SortCount {
 			//These arrays will keep track of if there were any swaps for a given pass
 			//through the array  
 			boolean wasSwapped[]=new boolean[arr.length];
+			boolean shouldSkipThisJ[]=new boolean[arr.length];
 
-			//Initialize the wasSwapped array;
+			//Initialize the wasSwapped array's first value to prevent a false test result below
 			wasSwapped[0]=true;
 			boolean nextIncr=false;
 
@@ -74,14 +75,14 @@ public class SortCount {
 
 			for (int i = arr.length - 1; i > 0; i=i-incr) 
 			{
-				
+				/*
 				//This for loop tests to see if no swaps were made for a given increment.
-				//This part works for arrays of an even-lengthed size
 				for(int k=0; k<=i; k=k+incr)
 				{
 					//If there was at least one swap, then we just continue normally
 					if(wasSwapped[k]==true)
 						break;
+					//If there were no swaps for this increment, we can break to the next increment (see below)
 					if(k==i)
 						nextIncr=true;					
 				}
@@ -90,8 +91,8 @@ public class SortCount {
 				{
 					incr = incr/2;
 					break;
-				}
-				 
+				}*/
+
 				//the inner for loop goes through the array once EXCEPT for the rightmost values that
 				// are "safe" by virtue of them having been bubbled to the right already.  With the "incr",
 				// this means the "incr" amount on the right side doesn't need to be tested after every
@@ -100,11 +101,25 @@ public class SortCount {
 				// I need to keep track of the number of swaps, because if it is 0, you don't have to compare them again
 				for (int j = 0; j + incr <= i; j++) 
 				{
-					wasSwapped[j]=false;
-					if (compare(arr[j+incr] < arr[j]))
-					{	
-						swap(arr, j, j+incr);
-						wasSwapped[j]=true;
+					printArray(arr);
+					if(!shouldSkipThisJ[j])
+					{
+						wasSwapped[j]=false;
+						if (compare(arr[j+incr] < arr[j]))
+						{	
+							printArray(arr);
+							swap(arr, j, j+incr);
+							wasSwapped[j]=true;
+						}
+					}
+					for (int l = j; l + incr <= i; l=l+incr)
+					{
+						if(wasSwapped[l]==true)
+							break;
+						//We can skip certain values of j if there are no swaps going on for those values
+						//for a given increment
+						if(l + incr ==i)
+							shouldSkipThisJ[j]=true;
 					}
 				}
 			}
