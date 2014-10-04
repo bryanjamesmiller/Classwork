@@ -52,9 +52,6 @@ public class SortCount {
 			//the last value no longer needs to be compared after each inner for loop pass per increment
 			for (int i = arr.length - 1; i > 0; i=i-incr) 
 			{
-				//the inner for loop goes through the array once and bubble the largest value to the right end
-				// When using an increment larger than 1, it bubbles the # of increment values to the right side
-				// I need to keep track of the number of swaps, because if it is 0, you don't have to compare them again
 				for (int j = 0; j + incr <= i; j++) 
 				{
 					//If there was no swap made after a pass was completed, 
