@@ -96,6 +96,7 @@ public class SortCount {
 				// I need to keep track of the number of swaps, because if it is 0, you don't have to compare them again
 				for (int j = 0; j + incr <= i; j++) 
 				{
+					printArray(arr);
 					if (compare(arr[j+incr] < arr[j]))
 					{	
 						swap(arr, j, j+incr);
