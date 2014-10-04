@@ -41,19 +41,38 @@ public class SortCount {
 		while (2 * incr <= arr.length)
 			incr = 2 * incr;
 		incr = incr - 1;
+
 		
 		while (incr >= 1) 
 		{
+			boolean nextIncr=false;
+			boolean didSwap=false;
 			for (int i = arr.length - 1; i > 0; i=i-incr) 
 			{
 				for (int j = 0; j + incr <= i; j++) 
 				{
-					
-					if (compare(arr[j+incr] < arr[j]))
+					//If there was no swap made after a pass was completed, 
+					//move on to the next increment
+					if(j+incr==i && didSwap==false)
 					{
-						swap(arr, j, j+incr);
+						nextIncr=true;
+						break;
 					}
+					
+					System.out.println("the increment is: " + incr);
+					System.out.println("i is: " + i);
+					System.out.println("j is: " + j);
+					System.out.println("j + incr is: " + (j + incr));
+					printArray(arr);
+					if (compare(arr[j+incr] < arr[j]))
+					{	
+						swap(arr, j, j+incr);
+						didSwap=true;
+					}
+					printArray(arr);
 				}
+				if(nextIncr==true)
+					break;
 			}
 			incr = incr/2;
 		}
@@ -389,7 +408,6 @@ public class SortCount {
 		in.nextLine();
 		System.out.print("Random (r), almost sorted (a), or fully sorted (f)? ");
 		arrayType = in.nextLine();
-		System.out.println();
 
 		/* 
 		 * Create the arrays.   
@@ -402,16 +420,28 @@ public class SortCount {
 				quickSort(a);
 		}
 
-		asave = new int[numItems];
-		System.out.println("Here is the original array before sorting: ");
-		System.arraycopy(a, 0, asave, 0, a.length);
-		printArray(a);
-		System.out.println();
+		//for(int i=0; i<10; i++){
+
+			asave = new int[numItems];
+			System.arraycopy(a, 0, asave, 0, a.length);
+			printArray(a);
+			
+
+			System.out.print("shellBubbleSort\t\t");
+			System.arraycopy(asave, 0, a, 0, asave.length);
+			initStats();
+			shellBubbleSort(a);
+			printStats();
+			printArray(a);
+			
+			a = randomArray(numItems);
+	//	}
 
 		/*
 		 * Try each of the various algorithms, starting each time 
 		 * with a fresh copy of the initial array.
-		 */
+		 * */
+		 
 		System.out.print("quickSort\t\t");
 		System.arraycopy(asave, 0, a, 0, asave.length);
 		initStats();
@@ -453,13 +483,8 @@ public class SortCount {
 		bubbleSort(a);
 		printStats();
 		printArray(a);
-		
-		System.out.print("shellBubbleSort\t\t");
-		System.arraycopy(asave, 0, a, 0, asave.length);
-		initStats();
-		shellBubbleSort(a);
-		printStats();
-		printArray(a);
-		
+
+
+
 	}
 }
