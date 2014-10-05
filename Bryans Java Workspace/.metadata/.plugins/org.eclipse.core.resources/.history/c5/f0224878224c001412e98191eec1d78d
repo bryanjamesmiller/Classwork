@@ -401,16 +401,15 @@ public class SortCounttester {
 
 	public static void main(String args[]) {
 		System.out.println("How many items in the array? 1000");
-		System.out.println("Random (r), almost sorted (a), or fully sorted (f)? f");
+		System.out.println("Random (r), almost sorted (a), or fully sorted (f)? r");
 
 
 		for(int i=0; i<10; i++)
 		{
 			int[] a; //={42229, 29279, 57912, 10853, 27643, 52513, 63058, 56818, 55344, 36109};       // the array
 			int[] asave;   // a copy of the original unsorted array
-			int numItems=16000;
+			int numItems=4000;
 			a = randomArray(numItems);
-			quickSort(a);
 
 			asave = new int[numItems];
 			System.arraycopy(a, 0, asave, 0, a.length);

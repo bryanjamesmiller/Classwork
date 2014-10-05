@@ -408,7 +408,7 @@ public class SortCounttester {
 		{
 			int[] a; //={42229, 29279, 57912, 10853, 27643, 52513, 63058, 56818, 55344, 36109};       // the array
 			int[] asave;   // a copy of the original unsorted array
-			int numItems=16000;
+			int numItems=4000;
 			a = randomArray(numItems);
 			quickSort(a);
 
