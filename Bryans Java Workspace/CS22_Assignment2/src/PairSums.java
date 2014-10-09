@@ -5,6 +5,7 @@ public class PairSums
 	static final int ARRAY_MAX_VALUE = 10;
 	static final int SUM_GOAL = 12;
 	static int counter=0;
+	static int counter2=0;
 
 	public static void main(String[] args)
 	{
@@ -16,10 +17,12 @@ public class PairSums
 		int k = SUM_GOAL;
 		System.out.println("Here is the findPairs method: ");
 		findPairs(testArray, k);
+		System.out.println("The findPairs counter is: " + counter2);
+		System.out.println();
 
 		System.out.println("Here is the faster findPairsFaster method: ");
 		findPairsFaster(testArray, k);
-		System.out.println(counter);
+		System.out.println("The findPairsFaster counter is: " + counter);
 	}
 
 	/*
@@ -36,6 +39,7 @@ public class PairSums
 				if(i == j)
 					break;
 
+				counter2++;
 				if(testArray[i] + testArray[j] == k)
 					System.out.println(testArray[i] + " + " + testArray[j] + " = " + k);
 			}
