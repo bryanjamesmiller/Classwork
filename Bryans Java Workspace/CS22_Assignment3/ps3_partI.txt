@@ -1,0 +1,28 @@
+Bryan Miller
+Bryanjamesmiller@fas.harvard.edu
+
+1. a)
+ 
+public void printOddsRecursive(IntNode str)
+{
+	if(str == null)
+		return;
+	
+	System.out.println(str.val);
+	
+	printOddsRecursive(str.next.next);  
+	
+	return; 
+}
+
+1. b)
+
+public void printOddsIterative(IntNode str)
+{
+	while(str != null)
+	{
+		System.out.println(str.val);
+		
+		str = str.next.next;
+	}
+}
