@@ -377,19 +377,27 @@ public class StringNode {
 		// Check for invalid parameters. 
 		if (start < 0 || end < start)
 			throw new IndexOutOfBoundsException();
-
-		if (start == 0 && end == 0)   // base case
-			return null;
-		else if (str == null)         // end > length
+		if (str == null)         // end > length
 			throw new IndexOutOfBoundsException();
 
-		if (start == 0) {
-			StringNode copyFirst = new StringNode(str.ch, null);
-			copyFirst.next = substring(str.next, 0, end - 1);
-			return copyFirst;
-		} else {
-			return substring(str.next, start - 1, end - 1);
+		//cycle through to the start
+		for(int i = 0; i < start; i++)
+		{
+			str = str.next; 
 		}
+		
+		StringNode firstNode = new StringNode(StringNode.charAt(str, start - 1), null);
+		StringNode prevNode = firstNode;
+		StringNode nextNode;
+		
+		for(int i = start; i < end - 1; i++)
+		{
+			nextNode = new StringNode(StringNode.charAt(str, i), null);
+			prevNode.next = nextNode;
+			prevNode = nextNode;
+		}
+		
+		return firstNode ;
 	}
 
 	/*
