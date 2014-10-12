@@ -121,14 +121,31 @@ public class StringNode {
 	 * concat - returns the concatenation of two linked-list strings
 	 */
 	public static StringNode concat(StringNode str1, StringNode str2) {
-		StringNode cat;
+		  
+		// The reason why the below 3 lines are outside of the for loop is so that
+		// we can keep track of a reference to the first node that points to the 
+		// new list of chars and return that reference.
+		StringNode firstNode = new StringNode(StringNode.charAt(str1, 0), null);
+		StringNode prevNode = firstNode;
+		StringNode nextNode;
 
-		if (str1 == null)
-			cat = copy(str2);
-		else 
-			cat = new StringNode(str1.ch, concat(str1.next, str2));
+		// The for loop starts somewhat unusually at 1 only because we've already 
+		// entered the 0 index value above when we were saving the reference to the "firstNode".
+		for (int i = 1; i < StringNode.length(str1); i++)   
+		{
+			nextNode = new StringNode(StringNode.charAt(str1, i), null);
+			prevNode.next = nextNode;
+			prevNode = nextNode;
+		}
+		
+		for (int i = 0; i < StringNode.length(str2); i++)   
+		{
+			nextNode = new StringNode(StringNode.charAt(str2, i), null);
+			prevNode.next = nextNode;
+			prevNode = nextNode;
+		}	
 
-		return cat;
+		return firstNode;
 	}
 
 	/**
