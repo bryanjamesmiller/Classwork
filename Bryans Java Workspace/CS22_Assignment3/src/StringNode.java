@@ -2,7 +2,7 @@
  * StringNode.java
  *
  * Computer Science E-22
- * Modified by: <your name>, <your e-mail address>
+ * Modified by: Bryan Miller, bmiller100wpm@gmail.com
  */
 
 import java.io.*;
@@ -38,10 +38,15 @@ public class StringNode {
 	private static StringNode getNode(StringNode str, int i) {
 		if (i < 0 || str == null)
 			return null;
-		else if (i == 0)
-			return str;
-		else
-			return getNode(str.next, i-1);
+
+		for(int j=0; j<=i; j++)
+		{			
+			if(j == i)
+				return str;
+			str=str.next;
+		}
+		
+		return null;
 	}
 
 	/*****************************************************
