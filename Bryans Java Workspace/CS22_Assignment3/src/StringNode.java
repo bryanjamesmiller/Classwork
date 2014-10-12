@@ -159,9 +159,36 @@ public class StringNode {
 		if (str == null)
 			return null;
 
-		StringNode copyFirst = new StringNode(str.ch, null);
-		copyFirst.next = copy(str.next);
-		return copyFirst;
+		/*
+		StringNode firstNode = new StringNode(s.charAt(0), null);
+		StringNode prevNode = firstNode;
+		StringNode nextNode;
+
+		for (int i = 1; i < s.length(); i++) {
+			nextNode = new StringNode(s.charAt(i), null);
+			prevNode.next = nextNode;
+			prevNode = nextNode;
+		}
+
+		return firstNode;
+		
+		*/
+		
+		StringNode firstNode = new StringNode(str.ch, null);
+		StringNode prevNode = firstNode;
+		StringNode nextNode;
+
+		for (int i = 0; i <= StringNode.length(str) + 3; i++)
+		{
+			str = str.next;
+			nextNode = new StringNode(str.ch, null);  //This creates a new node
+			prevNode.next = nextNode;  //This makes the prevNode point to the newly created nextNode
+			prevNode = nextNode;  //This is just "resetting" which node we're going to work with on the next loop
+		}
+		
+//		StringNode copyFirst = new StringNode(str.ch, null);
+	//	copyFirst.next = copy(str.next);
+		return firstNode;
 	}
 
 	/**
