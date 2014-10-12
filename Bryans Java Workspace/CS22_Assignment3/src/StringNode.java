@@ -45,7 +45,7 @@ public class StringNode {
 				return str;
 			str=str.next;
 		}
-		
+
 		return null;
 	}
 
@@ -97,7 +97,7 @@ public class StringNode {
 		{
 			str1 = str1.next;
 			str2 = str2.next;
-		
+
 			if (str1 == null && str2 == null)
 				return 0;
 			else if (str1 == null)
@@ -109,7 +109,7 @@ public class StringNode {
 			else if (str2.ch < str1.ch)
 				return 2;
 		}
-		
+
 		if (str1.ch < str2.ch)
 			return 1;
 		else if (str2.ch < str1.ch)
@@ -121,7 +121,7 @@ public class StringNode {
 	 * concat - returns the concatenation of two linked-list strings
 	 */
 	public static StringNode concat(StringNode str1, StringNode str2) {
-		  
+
 		// The reason why the below 3 lines are outside of the for loop is so that
 		// we can keep track of a reference to the first node that points to the 
 		// new list of chars and return that reference.
@@ -137,7 +137,7 @@ public class StringNode {
 			prevNode.next = nextNode;
 			prevNode = nextNode;
 		}
-		
+
 		for (int i = 0; i < StringNode.length(str2); i++)   
 		{
 			nextNode = new StringNode(StringNode.charAt(str2, i), null);
@@ -173,8 +173,8 @@ public class StringNode {
 	 * copy - returns a copy of the given linked-list string
 	 */
 	public static StringNode copy(StringNode str) {
-		  if (str == null)
-	            return null;
+		if (str == null)
+			return null;
 
 		// The reason why the below 3 lines are outside of the for loop is so that
 		// we can keep track of a reference to the first node that points to the 
@@ -224,7 +224,7 @@ public class StringNode {
 	 */
 	public static int indexOf(StringNode str, char ch) {
 		int counter = 0;
-		
+
 		if (str == null)         // base case 1: ch wasn't found
 			return -1;
 		else if (str.ch == ch)   // base case 2: ch was just found
@@ -302,7 +302,7 @@ public class StringNode {
 
 		if(str == null)
 			return 0;
-		
+
 		int counter = 0;
 
 		while(str != null)
@@ -377,26 +377,26 @@ public class StringNode {
 		// Check for invalid parameters. 
 		if (start < 0 || end < start)
 			throw new IndexOutOfBoundsException();
-		if (str == null)         // end > length
+		if (str == null)         
 			throw new IndexOutOfBoundsException();
 
 		//cycle through to the start
-		for(int i = 0; i < start; i++)
+		for(int i = 0; i < start - 1; i++)
 		{
 			str = str.next; 
 		}
-		
-		StringNode firstNode = new StringNode(StringNode.charAt(str, start - 1), null);
+
+		StringNode firstNode = new StringNode(StringNode.charAt(str, start), null);
 		StringNode prevNode = firstNode;
 		StringNode nextNode;
-		
-		for(int i = start; i < end - 1; i++)
+
+		for(int i = start + 1; i < end; i++)
 		{
 			nextNode = new StringNode(StringNode.charAt(str, i), null);
 			prevNode.next = nextNode;
 			prevNode = nextNode;
 		}
-		
+
 		return firstNode ;
 	}
 
@@ -433,6 +433,37 @@ public class StringNode {
 		}
 	} 
 
+	/**
+	 * Recursively prints every other character in the String represented by str.
+	 * 
+	 * @param str  This is the StringNode representing a string
+	 */
+	public static void printEveryOther(StringNode str)
+	{
+		if(str == null)
+			System.out.println();
+
+		System.out.print(str.ch);
+
+		if(str.next != null)
+		{
+			str = str.next;
+			if(str.next != null)
+				printEveryOther(str.next);
+		}
+	}
+
+	public static char largestChar(StringNode str)
+	{
+		if(str == null)
+			return '\0';
+
+		if(str.ch > largestChar(str.next))
+			return str.ch;
+		else
+			return largestChar(str.next);
+	}
+
 	public static void main(String[] args) throws IOException {
 		StringNode copy, str, str1, str2, str3;
 		String line;
@@ -461,6 +492,16 @@ public class StringNode {
 		System.out.println("\nIts length is " + StringNode.length(str1) + 
 				" characters.");
 
+		// printsEveryOther
+		System.out.println("Here is the printEveryOther method in action: ");
+		StringNode.printEveryOther(str1);
+		System.out.println("\n");
+
+		// largestChar
+		System.out.println("Here is the largestChar method in action: ");
+		System.out.println("The largest char is: " + StringNode.largestChar(str1));
+		System.out.println();
+		
 		// charAt
 		n = -1;
 		while (n < 0) {
@@ -552,5 +593,6 @@ public class StringNode {
 		str3 = StringNode.insertSorted(str3, line.charAt(0));
 		StringNode.print(str3);
 		System.out.println();
+
 	}
 }
