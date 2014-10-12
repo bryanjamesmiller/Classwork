@@ -488,6 +488,21 @@ public class StringNode {
 		return true;
 	}
 
+	public static int lastIndexOf(StringNode str, char ch)
+	{
+		if(str == null)
+			return 0;
+		
+		if(str.ch == ch)
+			return 0;
+		
+		// The +1 will grow as more and more recursive calls are made. 
+		return lastIndexOf(str.next, ch) + 1;
+		
+		// If no matches are found
+		return -1;
+	}
+	
 	public static void main(String[] args) throws IOException {
 		StringNode copy, str, str1, str2, str3;
 		String line;
@@ -517,7 +532,7 @@ public class StringNode {
 				" characters.");
 
 		// printsEveryOther
-		System.out.println("Here is the printEveryOther method in action: ");
+		System.out.println("\nHere is the printEveryOther method in action: ");
 		StringNode.printEveryOther(str1);
 		System.out.println("\n");
 
