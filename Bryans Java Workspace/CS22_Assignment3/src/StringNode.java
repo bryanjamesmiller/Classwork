@@ -156,38 +156,25 @@ public class StringNode {
 	 * copy - returns a copy of the given linked-list string
 	 */
 	public static StringNode copy(StringNode str) {
-		if (str == null)
-			return null;
+		  if (str == null)
+	            return null;
 
-		/*
-		StringNode firstNode = new StringNode(s.charAt(0), null);
+		// The reason why the below 3 lines are outside of the for loop is so that
+		// we can keep track of a reference to the first node that points to the 
+		// new list of chars and return that reference.
+		StringNode firstNode = new StringNode(StringNode.charAt(str, 0), null);
 		StringNode prevNode = firstNode;
 		StringNode nextNode;
 
-		for (int i = 1; i < s.length(); i++) {
-			nextNode = new StringNode(s.charAt(i), null);
+		// The for loop starts somewhat unusually at 1 only because we've already 
+		// entered the 0 index value above when we were saving the reference to the "firstNode".
+		for (int i = 1; i < StringNode.length(str); i++)   
+		{
+			nextNode = new StringNode(StringNode.charAt(str, i), null);
 			prevNode.next = nextNode;
 			prevNode = nextNode;
 		}
 
-		return firstNode;
-		
-		*/
-		
-		StringNode firstNode = new StringNode(str.ch, null);
-		StringNode prevNode = firstNode;
-		StringNode nextNode;
-
-		for (int i = 0; i <= StringNode.length(str) + 3; i++)
-		{
-			str = str.next;
-			nextNode = new StringNode(str.ch, null);  //This creates a new node
-			prevNode.next = nextNode;  //This makes the prevNode point to the newly created nextNode
-			prevNode = nextNode;  //This is just "resetting" which node we're going to work with on the next loop
-		}
-		
-//		StringNode copyFirst = new StringNode(str.ch, null);
-	//	copyFirst.next = copy(str.next);
 		return firstNode;
 	}
 
