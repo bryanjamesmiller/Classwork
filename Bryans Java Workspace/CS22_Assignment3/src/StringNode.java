@@ -491,7 +491,7 @@ public class StringNode {
 	public static int lastIndexOf(StringNode str, char ch)
 	{
 		if(str == null)
-			return 0;
+			return -1;
 
 
 		int testReturn = lastIndexOf(str.next, ch);
@@ -500,13 +500,13 @@ public class StringNode {
 		// This means the next further index will be returning a 0.
 		// We don't want to return just a 1 if there are more than 1 instances of ch
 		// that are in the string.
-		if(testReturn == 0)
+		if(testReturn == -1)
 		{
 			if(str.ch == ch)
-				return 1;
+				return 0;
 		}
 
-		if(testReturn != 0)
+		if(testReturn != -1)
 			return testReturn + 1;
 		return -1;
 	}
