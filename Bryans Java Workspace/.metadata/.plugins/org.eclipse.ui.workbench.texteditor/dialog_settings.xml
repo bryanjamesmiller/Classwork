@@ -3,26 +3,26 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="446" key="DIALOG_Y_ORIGIN"/>
-		<item value="381" key="DIALOG_HEIGHT"/>
 		<item value="88" key="DIALOG_X_ORIGIN"/>
+		<item value="381" key="DIALOG_HEIGHT"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="isRegEx"/>
 		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="noSwaps" key="selection"/>
+		<item value="IllegalArgumentE" key="selection"/>
 		<list key="findhistory">
-			<item value="didSwap"/>
-			<item value="moves"/>
-			<item value="incr"/>
-			<item value="main"/>
-			<item value="compare"/>
-			<item value="mergesort"/>
-			<item value="fillOneMagicSquare"/>
-			<item value="solve"/>
+			<item value="illegalArgumentE"/>
+			<item value="substring"/>
+			<item value="concat"/>
+			<item value="charAt"/>
+			<item value="length"/>
+			<item value="copy"/>
+			<item value="coyp"/>
+			<item value="delete"/>
 		</list>
 		<list key="replacehistory">
 			<item value="noSwaps"/>

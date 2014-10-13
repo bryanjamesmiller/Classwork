@@ -463,7 +463,7 @@ public class StringNode {
 		else
 			return largestChar(str.next);
 	}
-	
+
 	public static boolean startsWith(StringNode str, StringNode prefix)
 	{
 		// The directions say regardless of str's value, if prefix==null then return true.
@@ -472,19 +472,19 @@ public class StringNode {
 		// have matched thus far, as then prefix will actually be a prefix to str.
 		if(prefix == null)
 			return true;
-		
+
 		// The directions also say if str is null, but prefix is not null, then return false
 		// However, we don't have to test to see if prefix != null since we've already tested for
 		// if prefix == null above.  Thus, we know prefix != null if the program has reached here:
 		if(str == null)
 			return false;
-		
+
 		//Check to see if the current characters match
 		if(str.ch == prefix.ch)
 			startsWith(str.next, prefix.next);
 		else if(str.ch != prefix.ch)
 			return false;
-		
+
 		return true;
 	}
 
@@ -492,17 +492,25 @@ public class StringNode {
 	{
 		if(str == null)
 			return 0;
-		
-		if(str.ch == ch)
-			return 0;
-		
-		// The +1 will grow as more and more recursive calls are made. 
-		return lastIndexOf(str.next, ch) + 1;
-		
-		// If no matches are found
+
+
+		int testReturn = lastIndexOf(str.next, ch);
+
+		// Only start counting index values if it's the last index of ch.
+		// This means the next further index will be returning a 0.
+		// We don't want to return just a 1 if there are more than 1 instances of ch
+		// that are in the string.
+		if(testReturn == 0)
+		{
+			if(str.ch == ch)
+				return 1;
+		}
+
+		if(testReturn != 0)
+			return testReturn + 1;
 		return -1;
 	}
-	
+
 	public static void main(String[] args) throws IOException {
 		StringNode copy, str, str1, str2, str3;
 		String line;
@@ -540,7 +548,7 @@ public class StringNode {
 		System.out.println("Here is the largestChar method in action: ");
 		System.out.println("The largest char is: " + StringNode.largestChar(str1));
 		System.out.println();
-		
+
 		// startsWith
 		System.out.println("Here is the startsWith method in action: ");
 		System.out.print("Type a potential prefix string: ");
@@ -551,6 +559,16 @@ public class StringNode {
 		System.out.println("Is it a prefix? " + StringNode.startsWith(str1, prefix));
 		System.out.println();
 		
+		// lastIndexOf
+		System.out.println("Here is the lastIndexOf method in action.");
+		System.out.println("Please type in a character to find the last index of.");
+		System.out.print("Note, if more than one char are typed, only the first will be considered: ");
+		String testStr = in.nextLine();
+		char testCh = testStr.charAt(0);
+		System.out.println("The last index of '" + testCh + "' is: " + StringNode.lastIndexOf(str1, testCh));
+		System.out.println();
+
+
 		// charAt
 		n = -1;
 		while (n < 0) {
