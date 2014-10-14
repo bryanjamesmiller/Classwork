@@ -497,9 +497,6 @@ public class StringNode {
 		int testReturn = lastIndexOf(str.next, ch);
 
 		// Only start counting index values if it's the last index of ch.
-		// This means the next further index will be returning a 0.
-		// We don't want to return just a 1 if there are more than 1 instances of ch
-		// that are in the string.
 		if(testReturn == -1)
 		{
 			if(str.ch == ch)
