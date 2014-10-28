@@ -53,3 +53,5 @@ public static DoubleNode removeAllOccurrences(DoubleNode str, char ch)
 		}			
 		str = str.next;  			
 	}
+	return tempStr;  //Return the pointer to the list
+}
