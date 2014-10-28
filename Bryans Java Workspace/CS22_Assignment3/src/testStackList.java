@@ -3,6 +3,10 @@ public class testStackList {
 	public static void main (String [] args)
 	{
 		System.out.println(isPalindrome("abcdcba"));
+		System.out.println(isPalindrome("abccba"));
+		System.out.println(isPalindrome("t"));
+		System.out.println(isPalindrome(""));
+		System.out.println(isPalindrome("notapalindrome"));
 	}
 	
 	public static boolean isPalindrome(String str)
@@ -34,16 +38,14 @@ public class testStackList {
 		}
 		else
 		{
-			for(int i = 0; i < str.length()/2 - 1; i++)
+			for(int i = 0; i < str.length()/2; i++)
 			{
 				Character myChar = str.charAt(i);
 				myStack.push(myChar);
 			}
-			for(int i = str.length() / 2; i < str.length(); i++)
+			for(int i = str.length() / 2 + 1; i < str.length(); i++)
 			{
 				Character myChar = str.charAt(i);
-				System.out.println(str.charAt(i));
-				System.out.println(myStack.peek());
 				if(myChar != myStack.pop())
 					return false;
 			}
