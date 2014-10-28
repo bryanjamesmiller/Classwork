@@ -1,6 +1,56 @@
 
 public class sandbox
 {
+	public static LLList intersect(LLList list1, LLList list2)
+	{
+		LLList inters = new LLList();       
+		ListIterator iter1 = list1.iterator();
+
+		while (iter1.hasNext()) 
+		{
+			Object item1 = iter1.next();
+
+			ListIterator iter2 = list2.iterator();
+			while (iter2.hasNext())
+			{
+				Object item2 = iter2.next();
+				if (item1.equals(item2))
+				{
+					inters.item = item1;
+					inters = inters.next;
+					break;
+				}
+			}
+		}
+		return inters;
+	}
+
+	public class ListIterator
+	{
+
+		public boolean hasNext() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		public Object next() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+	}
+	
+	public class  LLList 
+	{
+		private Object item;
+		private LLList next;
+		public ListIterator iterator() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+	}
+
+	
 	public class IntNode 
 	{
 		private int val;
@@ -45,7 +95,7 @@ public class sandbox
 			throw new IllegalArgumentException("string is empty");
 
 		DoubleNode tempStr=str; //save the pointer to the whole list and update it if the first (several?) items match ch and get deleted
-		
+
 		while(str != null)
 		{
 			if (str.ch == ch && str.prev == null) //If the first node has the ch we're looking to delete, delete it by:

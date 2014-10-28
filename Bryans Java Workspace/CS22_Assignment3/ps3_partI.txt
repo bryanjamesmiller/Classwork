@@ -27,8 +27,7 @@ public void printOddsIterative(IntNode str)
 }
 
 
-2.  a)
-The worst-case efficiency is where the inner-loop "if" statement is evaluated to be true every time.
+2.  a)  The worst-case efficiency is where the inner-loop "if" statement is evaluated to be true every time.
 This will cause both operations (getItem and addItem) to run in the inner loop and 
 one operation to run in the outer loop.  However, all three of these operations have an efficiency of
 O(sizeOfList) every time they are used.  Thus, the outer-loop getItem has an efficiency of m*O(m).  The
@@ -44,27 +43,31 @@ public static LLList intersect(LLList list1, LLList list2)
 
         while (iter1.hasNext()) 
 	{
-	        ListIterator iter2 = list2.iterator();
         	Object item1 = iter1.next();
+
+	        ListIterator iter2 = list2.iterator();
 		while (iter2.hasNext())
 		{
 			Object item2 = iter2.next();
         		if (item1.equals(item2))
-				{
-					inters.item==item1;
-					inters=inters.next;
-       				}
+			{
+				inters.item = item1;
+				inters = inters.next;
+				break;
+       			}
 		}
         }
         return inters;
-    } 
+} 
 
 2.  c)  The main reason why my method in part b) is more efficient is because hasNext() is a much more efficient
 method and only traverses the linked list list1 once to get a new item in the outer loop, compared with getItem, 
 which traverses the entire linked list every time it is called.  The worst case for my method in part b) is
 when every item in list1 matches the last item in list2 every time.  This means the inner loop will have to 
 cycle all the way to the last item of list2 every time.  However, even in the worst case the efficiency has improved
-to O(m*n) since at worst the inner loop will have n cycles for every outer loop cycle.
+to O(m*(n+2m)), which will be roughly equal to O(n^2), since at worst the inner loop will have n cycles for every outer loop cycle.
+The 2m comes from the fact that in the worst case, the "if" statement is going to run and its two arguments will thus
+run m times each.
 
 3.
 public static DoubleNode removeAllOccurrences(DoubleNode str, char ch)
@@ -92,3 +95,6 @@ public static DoubleNode removeAllOccurrences(DoubleNode str, char ch)
 	}
 	return tempStr;  //Return the pointer to the list
 }
+
+4.
+
