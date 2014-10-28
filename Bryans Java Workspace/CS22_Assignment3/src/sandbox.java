@@ -1,8 +1,6 @@
 
 public class sandbox
 {
-
-	
 	public class IntNode 
 	{
 		private int val;
