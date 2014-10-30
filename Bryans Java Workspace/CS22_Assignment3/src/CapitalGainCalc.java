@@ -53,17 +53,22 @@ public class CapitalGainCalc {
 	public int processSale(int numSharesToSell, int price) {
 		/* Replace the line below with your implementation of this method. */
 
-		int numSharesTest = (int) myNumSharesQ.peek();
+		if(numSharesToSell > totalShares)
+			throw new IllegalArgumentException("You do not have that many shares available to sell");
+		
+		int numSharesTest = myQ.peek().numShares;
 
 		if(numSharesToSell < numSharesTest)
 		{
-			int priceTest = (int) myPriceQ.peek();
+			int priceTest = myQ.peek().price;
 			totalShares -= numSharesToSell;
 			return numSharesTest * priceTest;
 		}
 		else if(numSharesToSell == numSharesTest)
 		{
-			myNumSharesQ.remove();
+			int priceTest = myQ.peek().price;
+			myQ.remove();
+			return numSharesTest * priceTest;
 		}
 		else
 		{
