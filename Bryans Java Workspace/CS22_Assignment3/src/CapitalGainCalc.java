@@ -49,6 +49,7 @@ public class CapitalGainCalc {
 		if(numSharesToSell > totalShares)
 			throw new IllegalArgumentException("You do not have that many shares available to sell");
 
+		int salesDiff = 0;
 		int totalGains = 0;
 
 		while(numSharesToSell > 0)
@@ -58,17 +59,20 @@ public class CapitalGainCalc {
 			
 			if(numSharesToSell < numSharesInOneNode)
 			{
-				totalGains = numSharesToSell * priceInOneNode;
+				salesDiff = numSharesToSell * priceInOneNode;
+				totalGains += numSharesToSell * price - salesDiff;
 				myQ.peek().numShares = (numSharesInOneNode - numSharesToSell);
 			}
 			else if(numSharesToSell == numSharesInOneNode)
 			{
-				totalGains = numSharesInOneNode * priceInOneNode;
+				salesDiff = numSharesInOneNode * priceInOneNode;
+				totalGains += numSharesToSell * price - salesDiff;
 				myQ.remove();
 			}
 			else
 			{			
-				totalGains = numSharesInOneNode * priceInOneNode;
+				salesDiff = numSharesInOneNode * priceInOneNode;
+				totalGains += numSharesToSell * price - salesDiff;
 				myQ.remove();
 			}
 			totalShares -= numSharesToSell;
