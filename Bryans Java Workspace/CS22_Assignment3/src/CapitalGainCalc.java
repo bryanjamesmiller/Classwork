@@ -31,7 +31,7 @@ public class CapitalGainCalc {
 
 	public CapitalGainCalc() {
 		/* Put your implementation of the constructor below. */
-		LLQueue<Purchase> myQ = new <Purchase>LLQueue();
+		LLQueue<Purchase> myQ = new LLQueue<Purchase>();
 	}
 
 	public void processPurchase(int numShares, int price) {
@@ -39,11 +39,7 @@ public class CapitalGainCalc {
 
 		Purchase onePurchase = new Purchase(numShares, price);
 		totalShares += numShares;
-		if(myQ.isFull())
-		{
-			System.out.println("The Queue is full");
-			return;
-		}
+		
 		onePurchase.numShares = numShares;
 		onePurchase.price = price;
 
@@ -60,28 +56,26 @@ public class CapitalGainCalc {
 
 		while(numSharesToSell > 0)
 		{
-			int priceTest = myQ.peek().price;
-			int numShares = myQ.peek().numShares;
+			int priceInOneNode = myQ.peek().price;
+			int numSharesInOneNode = myQ.peek().numShares;
 			
-			if(numSharesToSell < numShares)
+			if(numSharesToSell < numSharesInOneNode)
 			{
-				totalGains = numSharesToSell * priceTest;
-				myQ.peek().numShares = (numShares - numSharesToSell);
+				totalGains = numSharesToSell * priceInOneNode;
+				myQ.peek().numShares = (numSharesInOneNode - numSharesToSell);
 			}
-			else if(numSharesToSell == numShares)
+			else if(numSharesToSell == numSharesInOneNode)
 			{
-				totalGains = numShares * priceTest;
+				totalGains = numSharesInOneNode * priceInOneNode;
 				myQ.remove();
 			}
 			else
 			{			
-				totalGains = numShares * priceTest;
+				totalGains = numSharesInOneNode * priceInOneNode;
 				myQ.remove();
 			}
 			totalShares -= numSharesToSell;
-			numSharesToSell -= numShares;
-			
-			
+			numSharesToSell -= numSharesInOneNode;	
 		}
 
 		return totalGains;
