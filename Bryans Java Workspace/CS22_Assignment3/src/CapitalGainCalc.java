@@ -65,20 +65,22 @@ public class CapitalGainCalc {
 			
 			if(numSharesToSell < numShares)
 			{
-				totalGains = numShares * priceTest;
+				totalGains = numSharesToSell * priceTest;
+				myQ.peek().numShares = (numShares - numSharesToSell);
 			}
 			else if(numSharesToSell == numShares)
 			{
 				totalGains = numShares * priceTest;
+				myQ.remove();
 			}
 			else
 			{			
 				totalGains = numShares * priceTest;
-			
+				myQ.remove();
 			}
 			totalShares -= numSharesToSell;
 			numSharesToSell -= numShares;
-			myQ.remove();
+			
 			
 		}
 
