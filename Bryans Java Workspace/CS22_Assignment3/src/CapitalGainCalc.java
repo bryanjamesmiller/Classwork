@@ -2,7 +2,7 @@
  * CapitalGainCalc.java
  *
  * Computer Science E-22
- * Modified by: <your name>, <your e-mail address>
+ * Modified by: <Bryan Miller>, <bmiller100wpm@gmail.com>
  */
 
 import java.util.*;
@@ -72,7 +72,15 @@ public class CapitalGainCalc {
 		}
 		else
 		{
-
+			int priceTest = 0;
+			int totalGains = 0;
+			while(numSharesToSell > 0)
+			{
+				priceTest = myQ.peek().price;
+				totalGains = numSharesTest * priceTest;
+				myQ.remove();
+				
+			}
 		}
 
 		return 0;
