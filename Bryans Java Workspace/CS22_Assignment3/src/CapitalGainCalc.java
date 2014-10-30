@@ -72,7 +72,7 @@ public class CapitalGainCalc {
 			else
 			{			
 				salesDiff = numSharesInOneNode * priceInOneNode;
-				totalGains += numSharesToSell * price - salesDiff;
+				totalGains += numSharesInOneNode * price - salesDiff;
 				myQ.remove();
 			}
 			totalShares -= numSharesToSell;
