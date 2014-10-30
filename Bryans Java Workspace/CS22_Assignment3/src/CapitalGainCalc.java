@@ -26,23 +26,20 @@ public class CapitalGainCalc {
 
 	/* Put your fields/instance variables below. */
 	private static int totalShares = 0;
-	private LLQueue<Purchase> myQ;
-
+	 
+	LLQueue<Purchase> myQ = new LLQueue<Purchase>();
 
 	public CapitalGainCalc() {
 		/* Put your implementation of the constructor below. */
-		LLQueue<Purchase> myQ = new LLQueue<Purchase>();
+		
 	}
 
 	public void processPurchase(int numShares, int price) {
 		/* Put your implementation of this method below. */
-
+		
 		Purchase onePurchase = new Purchase(numShares, price);
 		totalShares += numShares;
 		
-		onePurchase.numShares = numShares;
-		onePurchase.price = price;
-
 		myQ.insert(onePurchase);
 	}
 

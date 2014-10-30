@@ -453,6 +453,10 @@ public class StringNode {
 		}
 	}
 
+	/**
+	 * 
+	 * This method finds the largest Character code in the String
+	 */
 	public static char largestChar(StringNode str)
 	{
 		if(str == null)
@@ -464,6 +468,11 @@ public class StringNode {
 			return largestChar(str.next);
 	}
 
+	/**
+	 * 
+	 * This method finds if the String starts with the prefix and returns
+	 * true if it does, or else false.
+	 */
 	public static boolean startsWith(StringNode str, StringNode prefix)
 	{
 		// The directions say regardless of str's value, if prefix==null then return true.
@@ -488,6 +497,10 @@ public class StringNode {
 		return true;
 	}
 
+	/*
+	 * This method finds the last index of the given character in the 
+	 * given string, and it returns that index or -1 if null.
+	 */
 	public static int lastIndexOf(StringNode str, char ch)
 	{
 		if(str == null)
