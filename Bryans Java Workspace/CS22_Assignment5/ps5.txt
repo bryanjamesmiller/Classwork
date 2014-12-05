@@ -131,7 +131,7 @@ of the while loop:  {10, 18, 25, 30, 32, 46, 55, 65}
 
 2.a.)  the, my, an, by, do, we, if, to, go
 
-Hashing:
+Here's just the Hashing:
 The - 3
 My - 2
 An - 2
@@ -142,8 +142,7 @@ If - 2
 To - 2
 Go - 2
 
-Linear probing:
-Index:
+Table:
 0.  If
 1.  To
 2.  My
@@ -157,19 +156,20 @@ Using linear probing, the key "go" causes overflow.  The table above shows what 
 
 2.b.)  Quadratic probing:
 
-Hashing:
+Here's just the Hashing:
 The - 3
 My - 2
 An - 2 taken, so try 2+1 taken, so 2+4
 By - 2 taken, 2+1 taken, 2+4 taken, so wraparound (2+9)%8=3 taken, so (2+16)%8=2 taken, so (2+25)%8=3, taken, so
- (2+36)%8=6, taken, so 2+49 mod 8 is 3, it looks like it's already at overflow at this point since all the 
-remainders seem to be repeating and the rest if the keys have the same initial hash and quadratic pattern.
+ (2+36)%8=6, taken, so 2+49 mod 8 is 3, taken, so 2+64 mod 8 is 2, which is takenand we've now 
+tried n attempts so there's an infinite loop and we're at overflow at this point
 Do - 2
 We - 2
 If - 2
 To - 2
 Go - 2
 
+Table:
 0.
 1.  
 2.  My
@@ -183,6 +183,7 @@ The above table is what it looks like when overflow occurs.
 
 2.c.)  Double hashing:
 
+Here's just the hashing:
 The - 3
 My - 2
 An - 2+3=5
@@ -193,6 +194,7 @@ If - 2+4+4=10 mod 8 is 2, taken, +4 is 6, taken, +4 is 10, so it's stuck in a cy
 To - 2
 Go - 2
      
+Table:
 0.
 1.  
 2.  My
@@ -274,6 +276,65 @@ State H: g(x)=3
 + h(x)=13
 => p(x) = -16
 
+4.a.)  Since it's an array, we know each node put on the tree will be filled in order from 
+top to down, left to right, with no gaps.
 
+public static boolean isHeapTree(arr [], int i)
+{
+     if((arr.length - i) >= 3) //if there's at least a parent node with 
+//two children at this tree/subtree
+{
+     if(arr[i] < arr[2 * i + 1])  //if the left child is larger than a parent, 
+//return false since it's not a heap
+          return false;
+if(arr[i] < arr[2 * i + 2])  //if the right child is larger than a parent, 
+//return false since it's not a heap
+          return false;
+     else if((arr.length - i) == 3) //if there are no more subtrees we need to consider, 
+//and it passed the above conditions, this tree is a heap, so return true.
+     {
+          return true;
+     }
+     else //if there are more than three nodes, 
+//make a recursive call on the next node
+          isHeapTree(arr[], i + 1)
+     }
+
+if((arr.length - i) == 2) //if there's a parent node with one 
+//child at this tree/subtree
+     {
+          if(arr[i] < arr[2 * i + 1])  //if the only child is larger than a parent, 
+//return false since it's not a heap
+               return false;
+     }
+     else // We've reached the end of the tree and it's a heap since
+// it passed the above conditions
+          return true;
+}
+
+4.b.)  In terms of efficiency, the best case is when the first child node is greater than 
+the first parent node, because the test will detect it 
+in just 2 comparisons (one of the outer "if" statements and 
+then the first inner "if" statement) and return false regardless of what size n the array is.  
+Thus, the best case is a constant time efficiency of O(1).
+
+The worst case efficiency is O(n) when the tree is a heap or when only the very last 
+parent has a child that is greater than the parent, since either way every single n
+ecessary comparison must run.  
+
+The worst case will be 2*(n -1) or 2*(n -2) comparisons since each parent is 
+compared in 2 if statements, and since the children of the final parent don't 
+get tested (since they are leaves, they have no children to compare with), 
+so that is why it's n-1 or n-2 for one or two children for the 
+last 2 (1 parent and 1 child) or 3 nodes (1 parent and 2 children).  
+In any case, since every necessary comparison must run, it's a function of n, 
+and thus the efficiency will be O(n) in the worst case.
+
+The average case will be when a child node is greater than its parent somewhere 
+inbetween the first and last possible comparison.  This will also be O(n) efficiency
+ because in reality the average will likely be some fraction of n, such as 
+if the first child greater than its parent is found on average at 1/2*n.  
+This is still a number that is proportional to n, so the 
+efficiency would be O(n) in the average case, too.
 
 
