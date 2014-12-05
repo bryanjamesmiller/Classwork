@@ -1,0 +1,4 @@
+#index #navigation #nav-1 a, #index #navigation #nav-1 a:link, #index #navigation #nav-1 a:visited, #index #navigation #nav-1 a:hover,
+#spurs #navigation #nav-2 a, #spurs #navigation #nav-2 a:link, #spurs #navigation #nav-2 a:visited, #spurs #navigation #nav-2 a:hover,
+#rockets #navigation #nav-3 a, #rockets #navigation #nav-3 a:link, #rockets #navigation #nav-3 a:visited, #rockets #navigation #nav-3 a:hover
+{color: orange; background-color: #ffffff; border: thin solid orange;}

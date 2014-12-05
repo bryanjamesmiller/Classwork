@@ -1,0 +1,21 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <title>Publishing a page on the course web server</title>
+        <meta  charset="utf-8" />
+        <script type="text/javascript" src="js/jwplayer/jwplayer.js"></script>
+        <script type="text/javascript"> jwplayer.key="98l+M93QyvmhWC3lvJh1bloOwBIASEs9DzjQow==";</script>
+    </head>
+    <body>
+        <h1> Here is the JW player and the HTTP version:</h1>
+        <div id="videoHere">Loading...</div>
+        
+        <script type="text/javascript">
+        jwplayer("videoHere").setup({
+            file: "https://s3.amazonaws.com/cscie12/screencasts/publishing_on_web_server.mp4",
+            height: 600,
+            width: 800,
+        });
+          </script>
+        </body>
+    </html>

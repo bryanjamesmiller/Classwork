@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Publishing a page on the course web server</title>
+        <meta  charset="utf-8" />
+        <script type="text/javascript" src="js/jwplayer/jwplayer.js"></script>
+        <script type="text/javascript"> jwplayer.key="98l+M93QyvmhWC3lvJh1bloOwBIASEs9DzjQow==";</script>
+    </head>
+    <body>
+        <h1> Here is the JW player and the RTMP version:</h1>
+        <div id="LocOfVid">Loading...</div>
+
+        <script type="text/javascript">
+            jwplayer("LocOfVid").setup({
+                'file': 'rtmp://s35uyvud967x16.cloudfront.net/cfx/st/mp4:screencasts/publishing_on_web_server.mp4',
+                'width': '800',
+                'height': '600',
+            });
+        </script>
+    </body>
+</html>

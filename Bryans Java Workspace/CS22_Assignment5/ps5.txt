@@ -1,0 +1,279 @@
+1.a.)    Original:
+            10
+         /        \
+       46           25
+      /  \          /  \
+     18   32      30   55
+    /
+  65
+
+First sift:  start with parent of the last element which = (8-2)/2=3, a[3]=18
+
+After first sift:
+            10
+         /        \
+       46          25
+     /  \         /  \
+    65  32      30   55
+   /
+ 18
+
+Sift down all elements to the left of a[3].  Sift down a[2]=25.  After second sift:
+
+            10
+         /        \
+       46          55
+     /  \         /  \
+    65  32      30   25
+  /
+18
+
+Sift down all elements to the left of a[2].  Sift down a[1]=46.  After third sift:
+
+            10
+         /        \
+       65          55
+     /  \          /  \
+    46  32       30   25
+  /
+18
+            
+Sift down all elements to the left of a[1].  Sift down a[0]=10.   After fourth and final sift:
+
+            65
+         /        \
+       46         55
+     /  \         /  \
+    18  32       30   25
+  /
+10
+
+1.b.)  Array representation of the above finished heap:
+
+{65, 46, 55, 18, 32, 30, 25, 10}
+
+1.c.)  Initial heap:
+
+            65
+         /        \
+     46         55
+     /  \          /  \
+  18  32    30   25
+  /
+10
+
+Remove the 65 and put it after the new heap's array is complete:
+
+             55
+         /        \
+      46           30
+     /  \          /  \
+    18  32       10  25
+
+New array after first iteration of while loop:
+{55, 46, 30, 18, 32, 10, 25, 65}
+
+Remove the 55 and put it after new heap's array is complete (but before the 65):
+
+            46
+         /        \
+       32         30
+      /  \       /  
+     18  25    10  
+
+New array after second iteration of while loop:  {46, 32, 30, 18, 25, 10, 55, 65}
+
+Remove the 46 and put it after new heap's array is complete (but before the 55):
+
+              32
+         /        \
+       25         30
+      /  \          
+     18  10
+
+New array after third iteration of while loop:  {32, 25, 30, 18, 10, 46, 55, 65}
+
+Remove the 32 and put it after new heap's array is complete (but before the 46):
+
+            30
+          /        \
+        25         10
+      /       
+    18 
+
+New array after fourth iteration of while loop:  {30, 25, 10, 18, 32, 46, 55, 65}
+
+Remove the 30 and put it after new heap's array is complete (but before the 32):
+
+              25
+          /        \
+        18        10
+
+New array after fifth iteration of while loop:  {25, 18, 10, 30, 32, 46, 55, 65}
+
+Remove the 25 and put it after new heap's array is complete (but before the 30):
+
+             18
+           /        
+        10 
+
+New array after sixth iteration of while loop:  {18, 10, 25, 30, 32, 46, 55, 65}
+
+Remove the 18 and put it after new heap's array is complete (but before the 25):
+
+     10 
+
+New array after 7th iteration of while loop:  {10, 18, 25, 30, 32, 46, 55, 65}
+
+Remove the 10 from the top of the heap and put it after new heap's array is complete 
+(but before the 18), which results in the fully sorted new array after 8th iteration 
+of the while loop:  {10, 18, 25, 30, 32, 46, 55, 65}
+
+2.a.)  the, my, an, by, do, we, if, to, go
+
+Hashing:
+The - 3
+My - 2
+An - 2
+By - 2
+Do - 2
+We - 2
+If - 2
+To - 2
+Go - 2
+
+Linear probing:
+Index:
+0.  If
+1.  To
+2.  My
+3.  The
+4.  An
+5.  By
+6.  Do
+7.  We
+
+Using linear probing, the key "go" causes overflow.  The table above shows what it looks like at that point.
+
+2.b.)  Quadratic probing:
+
+Hashing:
+The - 3
+My - 2
+An - 2 taken, so try 2+1 taken, so 2+4
+By - 2 taken, 2+1 taken, 2+4 taken, so wraparound (2+9)%8=3 taken, so (2+16)%8=2 taken, so (2+25)%8=3, taken, so
+ (2+36)%8=6, taken, so 2+49 mod 8 is 3, it looks like it's already at overflow at this point since all the 
+remainders seem to be repeating and the rest if the keys have the same initial hash and quadratic pattern.
+Do - 2
+We - 2
+If - 2
+To - 2
+Go - 2
+
+0.
+1.  
+2.  My
+3.  The
+4.  By
+5.  
+6.  An
+7.
+
+The above table is what it looks like when overflow occurs.
+
+2.c.)  Double hashing:
+
+The - 3
+My - 2
+An - 2+3=5
+By - 2+4=6
+Do - 2+2=4
+We - 2+1+1+1+1+1=7
+If - 2+4+4=10 mod 8 is 2, taken, +4 is 6, taken, +4 is 10, so it's stuck in a cycle and it overflows here
+To - 2
+Go - 2
+     
+0.
+1.  
+2.  My
+3.  The
+4.  Do
+5.  An
+6.  By
+7.  We
+
+The above table is what it looks like when overflow occurs.
+
+3.a.)  The priorities that "Greedy Search" would assign to the following states are as follows.
+
+Sum of Manhattan distances = sum of each tile's horizontal distance + vertical distance to its goal = h(x)
+
+Priority of state x, p(x) = -1 * h(x)
+
+State A:
+The six has a MD of 2
+The two has a MD of 1
+The eight has a MD of 3
+The four and five have MDs of 0
+The one has a MD of 3
+The 7 has a MD of 0
+The three has a MD of 3
+The sum of the MDs = 2+1+3+3+3 = 12
+Thus p(x)= -12
+
+State B:
+The six has a MD of 2
+The two has a MD of 1
+The eight has a MD of 3
+The four has a MD of 0
+The five has a MD of 1
+The one has a MD of 3
+The 7 has a MD of 0
+The three has a MD of 3
+The sum of the MDs = 2+1+3+1+3+3 = 13
+Thus p(x)= -13
+
+State D:
+The six has a MD of 2
+The two has a MD of 1
+The eight has a MD of 3
+The four has a MD of 0
+The five has a MD of 1
+The one has a MD of 3
+The 7 has a MD of 0
+The three has a MD of 2
+The sum of the MDs = 2+1+3+1+3+2 = 12
+Thus p(x)= -12
+
+State H:
+The six has a MD of 2
+The two has a MD of 1
+The eight has a MD of 3
+The four has a MD of 0
+The five has a MD of 1
+The one has a MD of 3
+The 7 has a MD of 1
+The three has a MD of 2
+The sum of the MDs = 2+1+3+1+3+1+2 = 13
+Thus p(x)= -13
+
+3.b.). Using the same h(x) with A* the following priorities would result:
+State A:  g(x)=0 
++ h(x)=12
+=> p(x) = -12
+
+State B:  g(x)=1
++ h(x)=13
+=> p(x) = -14
+
+State D: g(x)=2
++ h(x)=12
+=> p(x) = -14
+
+State H: g(x)=3
++ h(x)=13
+=> p(x) = -16
+
+
+
+

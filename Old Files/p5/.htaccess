@@ -1,0 +1,14 @@
+ExpiresActive On
+ExpiresByType text/css A86400
+ExpiresByType application/x-javascript A86400
+ExpiresByType image/gif A86400
+ExpiresByType image/jpeg A86400
+ExpiresByType image/png A86400
+ExpiresDefault A86400
+ 
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xhtml
+AddOutputFilterByType DEFLATE application/x-javascript
+
+Redirect 301 /~bmiller/obscure_4k5z0z3/cscie12_project/ http://morpheus.dce.harvard.edu/~bmiller/obscure_4k5z0z3/cscie12_project/index.php
