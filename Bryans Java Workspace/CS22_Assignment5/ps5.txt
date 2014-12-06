@@ -350,13 +350,29 @@ Atlanta, St. Louis, Washington, New York, Boston, Denver, L.A., Seattle
 
 6.a.)
 
-8.  For requirement #1, a search tree does not allow for one to retrieve product records by specifying the name of the product, but a hash table does provided that a hashing function related to the name of the product is used, such as a weighted sum of its Unicode values.  
+7.a.)
 
-For requirement #2, again, a search tree does not allow for one to retrieve product records by specifying the first several letters in the name of the product, but a hash table does provided that a hashing function related to the characters of the key such as a weighted sum of its Unicode values.
+8.  For this question, I am using a generic binary tree as described in the lecture notes (that is balanced).
 
-For requirement #3, according to the lecture notes, "With good choices of hash function and table size, complexity is generally better than O(log n) and approaches O(1)".  This is more efficient than a search tree, which has an average efficiency of O(h) where h is the height of the tree.  A balanced tree has a height of log n, so it's average efficiency is O(log n).  Thus a hash table is again the better choice.
+For requirement #1, a search tree does not allow for one to retrieve product records by specifying the 
+name of the product, but a hash table does provided that a hashing function related to the name of the 
+product is used, such as a weighted sum of its Unicode values.  
 
-For requirement #4, adding items without taking the system offline, a binary search tree is better because you can just add the new items to the leafs of the tree, and as long as it's a linked list implementation, there is no size limit constraint from a software perspective.  Adding items to a hash table requires the possibility of overflow, so the hash table might need to get increased in size at some point, which will require taking the system off line.  
+For requirement #2, again, a search tree does not allow for one to retrieve product records by specifying
+ the first several letters in the name of the product, but a hash table does provided that a hashing 
+function related to the characters of the key such as a weighted sum of its Unicode values.
+
+For requirement #3, according to the lecture notes, "With good choices of hash function and table size,
+ complexity is generally better than O(log n) and approaches O(1)".  This is more efficient than a 
+search tree, which has an average efficiency of O(h) where h is the height of the tree.  A balanced 
+tree has a height of log n, so it's average efficiency is O(log n).  Thus a hash table is again the 
+better choice.
+
+For requirement #4, adding items without taking the system offline, a binary search tree is better 
+because you can just add the new items to the leafs of the tree, and as long as it's a linked list 
+implementation, there is no size limit constraint from a software perspective.  Adding items to a 
+hash table requires the possibility of overflow, so the hash table might need to get increased in 
+size at some point, which will require taking the system off line.  
 
 Overall, a hash table meets 3/4 of the requirements better than the binary tree, so I would recommend a hash table.
 
@@ -441,5 +457,15 @@ d->c->a->b->e->f
 		return false;
 	}
 
+11.b.). The time efficiency would be proportionate to the number of edges belonging to the first vertex plus 
+the total number of edges belonging to the second vertex, since some proportion of these combined edges are 
+cycled through in my method above.  A vertex can have at most n-1 nodes, and we may have to go through both 
+vertices' set of nodes.  This results in a worst-case efficiency of O(2*(n-1)), which is proportional to n, 
+and so the efficiency would be O(n).
+
+11.c.). One modification that would improve efficiency is if the vertices included a field containing the 
+number of edges the vertex had.  Then, especially in a non-directional graph, if we start with the vertex 
+with fewer edges, we will more quickly arrive at a shared edge.  In that case the efficiency would be O(n-1) 
+in the worst case, which is still O(n) but a better one than in part b.) above
 
 
