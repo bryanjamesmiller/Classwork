@@ -1,6 +1,6 @@
 1.a.)    Original:
-            10
-         /        \
+             10
+         /         \
        46           25
       /  \          /  \
      18   32      30   55
@@ -20,7 +20,7 @@ After first sift:
 
 Sift down all elements to the left of a[3].  Sift down a[2]=25.  After second sift:
 
-            10
+             10
          /        \
        46          55
      /  \         /  \
@@ -30,9 +30,9 @@ Sift down all elements to the left of a[3].  Sift down a[2]=25.  After second si
 
 Sift down all elements to the left of a[2].  Sift down a[1]=46.  After third sift:
 
-            10
+             10
          /        \
-       65          55
+       65           55
      /  \          /  \
     46  32       30   25
   /
@@ -40,9 +40,9 @@ Sift down all elements to the left of a[2].  Sift down a[1]=46.  After third sif
             
 Sift down all elements to the left of a[1].  Sift down a[0]=10.   After fourth and final sift:
 
-            65
+             65
          /        \
-       46         55
+       46          55
      /  \         /  \
     18  32       30   25
   /
@@ -56,9 +56,9 @@ Sift down all elements to the left of a[1].  Sift down a[0]=10.   After fourth a
 
             65
          /        \
-     46         55
+     46            55
      /  \          /  \
-  18  32    30   25
+   18   32       30   25
   /
 10
 
@@ -66,7 +66,7 @@ Remove the 65 and put it after the new heap's array is complete:
 
              55
          /        \
-      46           30
+      46            30
      /  \          /  \
     18  32       10  25
 
@@ -75,7 +75,7 @@ New array after first iteration of while loop:
 
 Remove the 55 and put it after new heap's array is complete (but before the 65):
 
-            46
+             46
          /        \
        32         30
       /  \       /  
@@ -85,7 +85,7 @@ New array after second iteration of while loop:  {46, 32, 30, 18, 25, 10, 55, 65
 
 Remove the 46 and put it after new heap's array is complete (but before the 55):
 
-              32
+             32
          /        \
        25         30
       /  \          
@@ -95,7 +95,7 @@ New array after third iteration of while loop:  {32, 25, 30, 18, 10, 46, 55, 65}
 
 Remove the 32 and put it after new heap's array is complete (but before the 46):
 
-            30
+              30
           /        \
         25         10
       /       
@@ -107,7 +107,7 @@ Remove the 30 and put it after new heap's array is complete (but before the 32):
 
               25
           /        \
-        18        10
+        18          10
 
 New array after fifth iteration of while loop:  {25, 18, 10, 30, 32, 46, 55, 65}
 
@@ -279,38 +279,38 @@ State H: g(x)=3
 4.a.)  Since it's an array, we know each node put on the tree will be filled in order from 
 top to down, left to right, with no gaps.
 
-public static boolean isHeapTree(arr [], int i)
-{
-     if((arr.length - i) >= 3) //if there's at least a parent node with 
-//two children at this tree/subtree
-{
-     if(arr[i] < arr[2 * i + 1])  //if the left child is larger than a parent, 
-//return false since it's not a heap
-          return false;
-if(arr[i] < arr[2 * i + 2])  //if the right child is larger than a parent, 
-//return false since it's not a heap
-          return false;
-     else if((arr.length - i) == 3) //if there are no more subtrees we need to consider, 
-//and it passed the above conditions, this tree is a heap, so return true.
-     {
-          return true;
-     }
-     else //if there are more than three nodes, 
-//make a recursive call on the next node
-          isHeapTree(arr[], i + 1)
-     }
+	public static boolean isHeapTree(arr [], int i)
+	{
+		if((arr.length - i) >= 3) //if there's at least a parent node with 
+			//two children at this tree/subtree
+		{
+			if(arr[i] < arr[2 * i + 1])  //if the left child is larger than a parent, 
+				//return false since it's not a heap
+				return false;
+			if(arr[i] < arr[2 * i + 2])  //if the right child is larger than a parent, 
+				//return false since it's not a heap
+				return false;
+			else if((arr.length - i) == 3) //if there are no more subtrees we need to consider, 
+				//and it passed the above conditions, this tree is a heap, so return true.
+			{
+				return true;
+			}
+			else //if there are more than three nodes, 
+				//make a recursive call on the next node
+				isHeapTree(arr[], i + 1)
+		}
 
-if((arr.length - i) == 2) //if there's a parent node with one 
-//child at this tree/subtree
-     {
-          if(arr[i] < arr[2 * i + 1])  //if the only child is larger than a parent, 
-//return false since it's not a heap
-               return false;
-     }
-     else // We've reached the end of the tree and it's a heap since
-// it passed the above conditions
-          return true;
-}
+		if((arr.length - i) == 2) //if there's a parent node with one 
+			//child at this tree/subtree
+		{
+			if(arr[i] < arr[2 * i + 1])  //if the only child is larger than a parent, 
+				//return false since it's not a heap
+				return false;
+		}
+		else // We've reached the end of the tree and it's a heap since
+			// it passed the above conditions
+			return true;
+	}
 
 4.b.)  In terms of efficiency, the best case is when the first child node is greater than 
 the first parent node, because the test will detect it 
@@ -370,50 +370,76 @@ d->c->a->b->e->f
 
 10).  Non-recursive dfTrav:
 
-   private static void dfTrav(Vertex v) 
-{
-    System.out.println(v.id);
-    v.done = true;
-    Edge e = v.edges;
-Stack<Vertex> myStack = new LLStack<Vertex>();
-myStack.insert(v); //we want a stack so once we reach a leaf vertex,
-// we can get the most recently visited parent vertex,
-//and try to visit another path down to another leaf vertex.
+   	private static void dfTrav(Vertex v) 
+	{
+		System.out.println(v.id);
+		v.done = true;
+		Edge e = v.edges;
+		Stack<Vertex> myStack = new LLStack<Vertex>();
+		myStack.insert(v); //we want a stack so once we reach a leaf vertex,
+		// we can get the most recently visited parent vertex,
+		//and try to visit another path down to another leaf vertex.
 
-while(!myStack.isEmpty())
-{
-    
-     while (e != null) 
-     {
-//Find the first available vertex in the adjacency list 
-         Vertex w = e.end;
+		while(!myStack.isEmpty())
+		{
 
-//if the first available vertex in the adjacency list has not been visited, 
-//visit it and get its adjacency list
-         if(w.done == false)
-         {
-              System.out.println(w.id);
-              w.done = true; //mark the new vertex as visited             
-myStack.insert(w); //add this vertex to the stack
-              Edge e = w.edges;  //get the new adjacency list from the newly visited vertex
-          }
+			while (e != null) 
+			{
+				//Find the first available vertex in the adjacency list 
+				Vertex w = e.end;
 
-//Otherwise, if that vertex has been visited, 
-// try the next edge in the adjacency list.  
-//If it doesn't have another edge, then e
-//will be set to null, and the inner while loop will quit.
-         else if(w.done == true) 
-               e = e.next;
-     }
+				//if the first available vertex in the adjacency list has not been visited, 
+				//visit it and get its adjacency list
+				if(w.done == false)
+				{
+					System.out.println(w.id);
+					w.done = true; //mark the new vertex as visited             
+					myStack.insert(w); //add this vertex to the stack
+					Edge e = w.edges;  //get the new adjacency list from the newly visited vertex
+				}
 
-//If the inner while loop quit, then all the edges from the adjacency list from the vertex it was considering have 
-//been tested, and all connected vertices have been visited, 
-//so move to the next parent vertex in the stack until there are no more, 
-//at which time v will be set to null and the outer loop will exit.
-   Vertex v = myStack.remove(); 
-   Edge e = v.edges;
-  }
-}
+				//Otherwise, if that vertex has been visited, 
+				// try the next edge in the adjacency list.  
+				//If it doesn't have another edge, then e
+				//will be set to null, and the inner while loop will quit.
+				else if(w.done == true) 
+					e = e.next;
+			}
+
+			//If the inner while loop quit, then all the edges from the 
+			//adjacency list from the vertex it was considering have 
+			//been tested, and all connected vertices have been visited, 
+			//so move to the next parent vertex in the stack until there are no more, 
+			//at which time v will be set to null and the outer loop will exit.
+			Vertex v = myStack.remove(); 
+			Edge e = v.edges;
+		}
+	}
+
+
+11.a.)  
+	public boolean isAdjacent(Vertex v1, Vertex v2)
+	{
+		Edge e1 = v1.edges;
+		Edge e2 = v2.edges;
+
+		while(e1 != null)
+		{
+			if(e1.end == v1)
+				return true;
+			else
+				e1 = e1.next;
+		}
+
+		while(e2 != null)
+		{
+			if(e2.end == v1)
+				return true;
+			else
+				e2 = e2.next;
+		}
+		return false;
+	}
 
 
 
