@@ -350,6 +350,24 @@ Atlanta, St. Louis, Washington, New York, Boston, Denver, L.A., Seattle
 
 6.a.)
 
+8.  For requirement #1, a search tree does not allow for one to retrieve product records by specifying the name of the product, but a hash table does provided that a hashing function related to the name of the product is used, such as a weighted sum of its Unicode values.  
+
+For requirement #2, again, a search tree does not allow for one to retrieve product records by specifying the first several letters in the name of the product, but a hash table does provided that a hashing function related to the characters of the key such as a weighted sum of its Unicode values.
+
+For requirement #3, according to the lecture notes, "With good choices of hash function and table size, complexity is generally better than O(log n) and approaches O(1)".  This is more efficient than a search tree, which has an average efficiency of O(h) where h is the height of the tree.  A balanced tree has a height of log n, so it's average efficiency is O(log n).  Thus a hash table is again the better choice.
+
+For requirement #4, adding items without taking the system offline, a binary search tree is better because you can just add the new items to the leafs of the tree, and as long as it's a linked list implementation, there is no size limit constraint from a software perspective.  Adding items to a hash table requires the possibility of overflow, so the hash table might need to get increased in size at some point, which will require taking the system off line.  
+
+Overall, a hash table meets 3/4 of the requirements better than the binary tree, so I would recommend a hash table.
+
+
+9.a.)  No, this is not a DAG.  Here are the cycles:  
+c->d->b->c
+c->d->f->c
+
+9.b.)  Yes, this is a DAG.  Here is one topographical sort:
+d->c->a->b->e->f
+
 10).  Non-recursive dfTrav:
 
    private static void dfTrav(Vertex v) 
