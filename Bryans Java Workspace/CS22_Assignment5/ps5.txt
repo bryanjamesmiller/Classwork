@@ -338,3 +338,64 @@ This is still a number that is proportional to n, so the
 efficiency would be O(n) in the average case, too.
 
 
+5.a.). Breadth-first results in:
+Atlanta, St. Louis, Washington, Denver, New York, Boston, L.A., Seattle
+
+5.b.)  Atlanta->St. Louis->Boston
+
+5.c.)  Depth-first results in:
+Atlanta, St. Louis, Washington, New York, Boston, Denver, L.A., Seattle
+
+5.d.). Atlanta->St. Louis->Washington->New York->Boston
+
+6.a.)
+
+10).  Non-recursive dfTrav:
+
+   private static void dfTrav(Vertex v) 
+{
+    System.out.println(v.id);
+    v.done = true;
+    Edge e = v.edges;
+Stack<Vertex> myStack = new LLStack<Vertex>();
+myStack.insert(v); //we want a stack so once we reach a leaf vertex,
+// we can get the most recently visited parent vertex,
+//and try to visit another path down to another leaf vertex.
+
+while(!myStack.isEmpty())
+{
+    
+     while (e != null) 
+     {
+//Find the first available vertex in the adjacency list 
+         Vertex w = e.end;
+
+//if the first available vertex in the adjacency list has not been visited, 
+//visit it and get its adjacency list
+         if(w.done == false)
+         {
+              System.out.println(w.id);
+              w.done = true; //mark the new vertex as visited             
+myStack.insert(w); //add this vertex to the stack
+              Edge e = w.edges;  //get the new adjacency list from the newly visited vertex
+          }
+
+//Otherwise, if that vertex has been visited, 
+// try the next edge in the adjacency list.  
+//If it doesn't have another edge, then e
+//will be set to null, and the inner while loop will quit.
+         else if(w.done == true) 
+               e = e.next;
+     }
+
+//If the inner while loop quit, then all the edges from the adjacency list from the vertex it was considering have 
+//been tested, and all connected vertices have been visited, 
+//so move to the next parent vertex in the stack until there are no more, 
+//at which time v will be set to null and the outer loop will exit.
+   Vertex v = myStack.remove(); 
+   Edge e = v.edges;
+  }
+}
+
+
+
