@@ -4,8 +4,8 @@
  * A program that decompresses a file that was compressed using 
  * Huffman encoding.
  *
- * <your name>, <your e-mail address>
- * <current date>
+ * Bryan Miller, bmiller100wpm@gmail.com
+ * 12/9/2014
  */ 
 
 import java.io.*;
