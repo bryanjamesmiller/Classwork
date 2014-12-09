@@ -348,9 +348,31 @@ Atlanta, St. Louis, Washington, New York, Boston, Denver, L.A., Seattle
 
 5.d.). Atlanta->St. Louis->Washington->New York->Boston
 
-6.a.)
+6.)  Here is the MST:
+(Atlanta, St. Louis)
+(Atlanta, Washington)
+(Washington, New York)
+(New York, Boston)
+(St. Louis, Denver)
+(Denver, L.A.)
+(L.A., Seattle)
 
-7.a.)
+7.a.).  Order in which the cities are finalized and the minimum distance to each:
+Atlanta,        0,         
+St. Louis,      500 (finalized), 
+Washington,     650,        650 (finalized)
+New York,       Infinite,   1400,      900 (finalized) 
+Boston,         Infinite,   1500,      1500,     1100 (finalized)
+Denver,         Infinite,   1290,      1290,     1290,     1290 (finalized)
+L.A.,           Infinite,   2100,      2100,     2100,     2100,     2090 (finalized)
+Seattle,        Infinite,   Infinite,  Infinite, Infinite, Infinite, 2290,   2290 (finalized)
+
+7.b.)  Final shortest path from Atlanta to Boston:
+  Atlanta -> Washington -> New York -> Boston
+
+I believe there is just one temporary path:
+Atlanta -> St. Louis -> Boston
+
 
 8.  For this question, I am using a generic binary tree as described in the lecture notes (that is balanced).
 
@@ -467,5 +489,15 @@ and so the efficiency would be O(n).
 number of edges the vertex had.  Then, especially in a non-directional graph, if we start with the vertex 
 with fewer edges, we will more quickly arrive at a shared edge.  In that case the efficiency would be O(n-1) 
 in the worst case, which is still O(n) but a better one than in part b.) above
+
+12.)  The edges of the MST in the order in which Kruskal's algorithm would add them is as follows:
+(Boston, New York)
+(Washington, New York)
+(St. Louis, Atlanta)
+(Washington, Atlanta)
+(St. Louis, Denver)
+(L.A., Denver)
+(L.A., Seattle)
+
 
 
