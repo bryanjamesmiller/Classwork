@@ -358,14 +358,16 @@ Atlanta, St. Louis, Washington, New York, Boston, Denver, L.A., Seattle
 (L.A., Seattle)
 
 7.a.).  Order in which the cities are finalized and the minimum distance to each:
-Atlanta,        0,         
-St. Louis,      500 (finalized), 
-Washington,     650,        650 (finalized)
-New York,       Infinite,   1400,      900 (finalized) 
-Boston,         Infinite,   1500,      1500,     1100 (finalized)
-Denver,         Infinite,   1290,      1290,     1290,     1290 (finalized)
-L.A.,           Infinite,   2100,      2100,     2100,     2100,     2090 (finalized)
-Seattle,        Infinite,   Infinite,  Infinite, Infinite, Infinite, 2290,   2290 (finalized)
+Here is the entire table:
+Atlanta,    0 (finalized),
+St. Louis,  Infinite,  500 (finalized), 
+Washington, Infinite,  650,        650 (finalized)
+New York,   Infinite,  Infinite,   1400,      900 (finalized) 
+Boston,     Infinite,  Infinite,   1500,      1500,     1100 (finalized)
+Denver,     Infinite,  Infinite,   1290,      1290,     1290,     1290 (finalized)
+L.A.,       Infinite,  Infinite,   2100,      2100,     2100,     2100,   2090 (finalized)
+Seattle,    Infinite,  Infinite,   Infinite,  Infinite, Infinite, 3040,   3040,  2290 (finalized)
+
 
 7.b.)  Final shortest path from Atlanta to Boston:
   Atlanta -> Washington -> New York -> Boston
