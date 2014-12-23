@@ -11,4 +11,4 @@ AddOutputFilterByType DEFLATE text/css
 AddOutputFilterByType DEFLATE application/xhtml
 AddOutputFilterByType DEFLATE application/x-javascript
 
-Redirect 301 /~bmiller/obscure_4k5z0z3/cscie12_project/ http://morpheus.dce.harvard.edu/~bmiller/obscure_4k5z0z3/cscie12_project/index.php
+Redirect 301 /index.php
