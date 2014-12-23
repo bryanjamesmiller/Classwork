@@ -7,6 +7,10 @@ h1{
     font-size:370%;
     font-weight: bold;    
 }
+
+#right_justify{
+    text-align:right;
+}
 #main{
     margin-left:160px;   
     font-family:Arial, sans-serif;
