@@ -42,7 +42,7 @@
                 jwplayer("videoHere").setup({
                     file: "http://youtu.be/0r-XrLka1iM",
                     height: 600,
-                    width: 800,
+                    width: 800
                 });
             </script>
         </div>

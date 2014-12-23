@@ -174,9 +174,9 @@
             <div id="videoHere">Loading...</div>    
             <script type="text/javascript">
                 jwplayer("videoHere").setup({
-                    file: "http://youtu.be/LIvxdl8LDwk",
+                    file: "http://youtu.be/isPm79xTzM4",
                     height: 600,
-                    width: 800,
+                    width: 800
                 });
             </script>
             <hr class="line">

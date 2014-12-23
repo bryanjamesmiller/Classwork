@@ -15,7 +15,7 @@
 <span id="videoHere">Loading...</span>
 <script type="text/javascript">
     jwplayer("videoHere").setup({
-        file: "http://youtu.be/LIvxdl8LDwk",
+        file: "http://youtu.be/EYEHUOpwNvE",
         height: 600,
         width: 800
     });
