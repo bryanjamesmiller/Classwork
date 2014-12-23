@@ -20,7 +20,7 @@ if (isset($_POST['send'])){
 <head>
 <meta charset="utf-8">
 <title>Client Contact Information</title>
-<link href="../../../../../xampp/htdocs/introducingphp/textColors.css" rel="stylesheet" type="text/css">
+<link href="textColors.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
