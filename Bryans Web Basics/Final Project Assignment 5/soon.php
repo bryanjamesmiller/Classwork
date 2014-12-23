@@ -9,8 +9,7 @@
     <script type="text/javascript"> jwplayer.key="98l+M93QyvmhWC3lvJh1bloOwBIASEs9DzjQow==";</script>
 </head>
 <body>
-<?php include ("includes/navigation.php"); ?>
-<h2>Coming Next Season!</h2>
+<h1>Coming Next Season!</h1>
 <hr class="line">
 <div id="videoHere">Loading...</div>
 <script type="text/javascript">
@@ -21,6 +20,6 @@
     });
 </script>
 <hr class="line">
-
+<?php include ("includes/navigation.php"); ?>
 </body>
 </html>
