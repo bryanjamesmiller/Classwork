@@ -22,8 +22,5 @@
 </script>
 <hr class="line">
 </span>
-
-<span id="right_justify"><?php include ("includes/navigation.php"); ?></span>
-
 </body>
 </html>
