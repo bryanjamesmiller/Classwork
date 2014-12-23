@@ -10,7 +10,8 @@
 </head>
 <body>
 <h1>Coming Next Season!</h1>
-<hr class="line">
+<span>
+    <hr class="line">
 <div id="videoHere">Loading...</div>
 <script type="text/javascript">
     jwplayer("videoHere").setup({
@@ -20,6 +21,9 @@
     });
 </script>
 <hr class="line">
-<?php include ("includes/navigation.php"); ?>
+</span>
+
+<span><?php include ("includes/navigation.php"); ?></span>
+
 </body>
 </html>
